@@ -18,6 +18,8 @@ public class FromActivity extends BaseActivity {
         for (int i = 0; i <= 5; i++) {
             list.add(i);
         }
+        mLButton.setText("FromArray");
+        mRButton.setText("FromIterable");
         mLButton.setOnClickListener(e -> FromArray().subscribe(i -> log("FromArray:" + i)));
         mRButton.setOnClickListener(e -> FromIterable().subscribe(i -> log("FromIterable:" + i)));
     }

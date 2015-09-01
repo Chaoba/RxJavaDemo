@@ -21,20 +21,43 @@
             android:label="@string/title_activity_base" >
         </activity>
         <activity
-            android:name=".creatingobserver.CreateActivity"
-            android:label="@string/title_activity_create" >
+            android:name=".creatingobserver.CreateAndRangeActivity"
+            android:parentActivityName=".BaseActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".creatingobserver.DeferAndJustActivity"
-            android:label="@string/title_activity_defer" >
+            android:label="@string/title_activity_defer"
+            android:parentActivityName=".BaseActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".creatingobserver.FromActivity"
-            android:label="@string/title_activity_from" >
+            android:label="@string/title_activity_from"
+            android:parentActivityName=".BaseActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".creatingobserver.IntervalActivity"
-            android:label="@string/title_activity_interval" >
+            android:label="@string/title_activity_interval"
+            android:parentActivityName=".BaseActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
+        </activity>
+        <activity
+            android:name=".creatingobserver.RepeatAndTimerActivity"
+            android:label="@string/title_activity_repeat"
+            android:parentActivityName=".BaseActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
     </application>
 

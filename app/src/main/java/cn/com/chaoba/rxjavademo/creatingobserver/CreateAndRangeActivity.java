@@ -8,11 +8,12 @@ import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
 import rx.Subscriber;
 
-public class CreateActivity extends BaseActivity {
+public class CreateAndRangeActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mLButton.setText("Create");
         mLButton.setOnClickListener(e -> createObserver().subscribe(new Subscriber<Integer>() {
             @Override
             public void onCompleted() {
@@ -29,6 +30,8 @@ public class CreateActivity extends BaseActivity {
                 log("onNext:" + integer);
             }
         }));
+        mRButton.setText("Range");
+        mRButton.setOnClickListener(e -> rangeObserver().subscribe(this::log));
     }
 
     private Observable<Integer> createObserver() {
@@ -53,6 +56,10 @@ public class CreateActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    private Observable<Integer> rangeObserver() {
+        return Observable.range(10, 5);
     }
 
 
