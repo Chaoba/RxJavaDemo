@@ -22,27 +22,19 @@
         </activity>
         <activity
             android:name=".creatingobserver.CreateActivity"
-            android:label="@string/title_activity_create"
-            android:parentActivityName=".BaseActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
+            android:label="@string/title_activity_create" >
         </activity>
         <activity
             android:name=".creatingobserver.DeferAndJustActivity"
-            android:label="@string/title_activity_defer"
-            android:parentActivityName=".BaseActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
+            android:label="@string/title_activity_defer" >
         </activity>
         <activity
             android:name=".creatingobserver.FromActivity"
-            android:label="@string/title_activity_from"
-            android:parentActivityName=".BaseActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
+            android:label="@string/title_activity_from" >
+        </activity>
+        <activity
+            android:name=".creatingobserver.IntervalActivity"
+            android:label="@string/title_activity_interval" >
         </activity>
     </application>
 
