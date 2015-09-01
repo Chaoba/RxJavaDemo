@@ -17,21 +17,21 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/go"
+            android:id="@+id/left"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="go"/>
+            android:text="left"/>
 
         <Button
-            android:id="@+id/second_go"
+            android:id="@+id/right"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/go"
+            android:layout_below="@id/left"
             android:layout_weight="1"
-            android:text="second_go"/>
+            android:text="right"/>
 
     </LinearLayout>
 

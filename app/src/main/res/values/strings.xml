@@ -6,4 +6,5 @@
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_create">CreateActivity</string>
     <string name="title_activity_defer">DeferActivity</string>
+    <string name="title_activity_from">FromActivity</string>
 </resources>

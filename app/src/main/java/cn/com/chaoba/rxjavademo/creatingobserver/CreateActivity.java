@@ -13,11 +13,26 @@ public class CreateActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mGoButton.setOnClickListener(e -> createObserver());
+        mLButton.setOnClickListener(e -> createObserver().subscribe(new Subscriber<Integer>() {
+            @Override
+            public void onCompleted() {
+                log("onComplete!");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                log("onError:" + e.getMessage());
+            }
+
+            @Override
+            public void onNext(Integer integer) {
+                log("onNext:" + integer);
+            }
+        }));
     }
 
-    private void createObserver() {
-        Observable.create(new Observable.OnSubscribe<Integer>() {
+    private Observable<Integer> createObserver() {
+        return Observable.create(new Observable.OnSubscribe<Integer>() {
             @Override
             public void call(Subscriber<? super Integer> subscriber) {
                 if (!subscriber.isUnsubscribed()) {
@@ -35,23 +50,7 @@ public class CreateActivity extends BaseActivity {
                             subscriber.onCompleted();
                         }
                     }
-
                 }
-            }
-        }).subscribe(new Subscriber<Integer>() {
-            @Override
-            public void onCompleted() {
-                log("onComplete!");
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                log("onError:" + e.getMessage());
-            }
-
-            @Override
-            public void onNext(Integer integer) {
-                log("onNext:" + integer);
             }
         });
     }

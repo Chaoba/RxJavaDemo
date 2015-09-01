@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 public class BaseActivity extends AppCompatActivity {
 
-    protected Button mGoButton, mSecondButton;
+    protected Button mLButton, mRButton;
     protected TextView mResultView;
     protected String TAG;
 
@@ -16,8 +16,8 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
-        mGoButton = (Button) findViewById(R.id.go);
-        mSecondButton = (Button) findViewById(R.id.second_go);
+        mLButton = (Button) findViewById(R.id.left);
+        mRButton = (Button) findViewById(R.id.right);
         mResultView = (TextView) findViewById(R.id.result);
         TAG = getLocalClassName();
     }

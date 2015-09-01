@@ -12,8 +12,8 @@ public class DeferAndJustActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         Observable<Long> deferObservable = DeferObserver();
         Observable<Long> justObservable = JustObserver();
-        mGoButton.setOnClickListener(e -> deferObservable.subscribe(time -> log("defer:" + time)));
-        mSecondButton.setOnClickListener(e -> justObservable.subscribe(time -> log("just:" + time)));
+        mLButton.setOnClickListener(e -> deferObservable.subscribe(time -> log("defer:" + time)));
+        mRButton.setOnClickListener(e -> justObservable.subscribe(time -> log("just:" + time)));
     }
 
     private Observable<Long> DeferObserver() {

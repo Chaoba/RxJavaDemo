@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import cn.com.chaoba.rxjavademo.creatingobserver.CreateActivity;
 import cn.com.chaoba.rxjavademo.creatingobserver.DeferAndJustActivity;
+import cn.com.chaoba.rxjavademo.creatingobserver.FromActivity;
 
 public class MainActivity extends ListActivity {
     ArrayList<Item> content = new ArrayList<>();
@@ -23,6 +24,7 @@ public class MainActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         content.add(new Item("Create", new Intent(this, CreateActivity.class)));
         content.add(new Item("DeferAndJust", new Intent(this, DeferAndJustActivity.class)));
+        content.add(new Item("From", new Intent(this, FromActivity.class)));
         mMainAdapter = new MainAdapter();
         setListAdapter(mMainAdapter);
     }
