@@ -8,17 +8,38 @@
                 android:paddingTop="@dimen/activity_vertical_margin"
                 tools:context="cn.com.chaoba.rxjavademo.BaseActivity">
 
-    <Button
-        android:id="@+id/go"
+    <LinearLayout
+        android:id="@+id/button_bar"
+        style="@style/Widget.AppCompat.ButtonBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="go"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/go"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="go"/>
+
+        <Button
+            android:id="@+id/second_go"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/go"
+            android:layout_weight="1"
+            android:text="second_go"/>
+
+    </LinearLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/go">
+        android:layout_above="@id/button_bar">
 
         <TextView
             android:id="@+id/result"

@@ -28,6 +28,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
+        <activity
+            android:name=".creatingobserver.DeferAndJustActivity"
+            android:label="@string/title_activity_defer"
+            android:parentActivityName=".BaseActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
+        </activity>
     </application>
 
 </manifest>
