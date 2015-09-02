@@ -9,4 +9,5 @@
     <string name="title_activity_from">FromActivity</string>
     <string name="title_activity_interval">IntervalActivity</string>
     <string name="title_activity_repeat">RepeatActivity</string>
+    <string name="title_activity_buffer">BufferActivity</string>
 </resources>
