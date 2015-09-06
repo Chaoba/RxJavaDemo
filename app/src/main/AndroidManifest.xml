@@ -67,6 +67,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
+        <activity
+            android:name=".transforming.FlatMapActivity"
+            android:label="@string/title_activity_flat_map"
+            android:parentActivityName=".BaseActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
+        </activity>
+        <activity
+            android:name=".transforming.GroupbyActivity"
+            android:label="@string/title_activity_groupby"
+            android:parentActivityName=".BaseActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -10,4 +10,6 @@
     <string name="title_activity_interval">IntervalActivity</string>
     <string name="title_activity_repeat">RepeatActivity</string>
     <string name="title_activity_buffer">BufferActivity</string>
+    <string name="title_activity_flat_map">FlatMapActivity</string>
+    <string name="title_activity_groupby">GroupbyActivity</string>
 </resources>
