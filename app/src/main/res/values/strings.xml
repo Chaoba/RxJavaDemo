@@ -12,4 +12,7 @@
     <string name="title_activity_buffer">BufferActivity</string>
     <string name="title_activity_flat_map">FlatMapActivity</string>
     <string name="title_activity_groupby">GroupbyActivity</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_scan">ScanActivity</string>
+    <string name="title_activity_window">WindowActivity</string>
 </resources>

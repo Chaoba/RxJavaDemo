@@ -20,7 +20,6 @@ public class DeferAndJustActivity extends BaseActivity {
 
     private Observable<Long> DeferObserver() {
         return Observable.defer(() -> Observable.just(System.currentTimeMillis()));
-
     }
 
     private Observable<Long> JustObserver() {

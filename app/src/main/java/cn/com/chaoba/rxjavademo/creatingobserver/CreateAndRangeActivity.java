@@ -31,7 +31,7 @@ public class CreateAndRangeActivity extends BaseActivity {
             }
         }));
         mRButton.setText("Range");
-        mRButton.setOnClickListener(e -> rangeObserver().subscribe(this::log));
+        mRButton.setOnClickListener(e -> rangeObserver().subscribe(i -> log(i)));
     }
 
     private Observable<Integer> createObserver() {

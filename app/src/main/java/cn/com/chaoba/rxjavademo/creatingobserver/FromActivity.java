@@ -26,7 +26,6 @@ public class FromActivity extends BaseActivity {
 
     private Observable<Integer> FromArray() {
         return Observable.from(arrays);
-
     }
 
     private Observable<Integer> FromIterable() {

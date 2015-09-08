@@ -19,6 +19,9 @@ import cn.com.chaoba.rxjavademo.creatingobserver.RepeatAndTimerActivity;
 import cn.com.chaoba.rxjavademo.transforming.BufferActivity;
 import cn.com.chaoba.rxjavademo.transforming.FlatMapActivity;
 import cn.com.chaoba.rxjavademo.transforming.GroupbyActivity;
+import cn.com.chaoba.rxjavademo.transforming.MapAndCastActivity;
+import cn.com.chaoba.rxjavademo.transforming.ScanActivity;
+import cn.com.chaoba.rxjavademo.transforming.WindowActivity;
 
 public class MainActivity extends ListActivity {
     ArrayList<Item> content = new ArrayList<>();
@@ -35,6 +38,9 @@ public class MainActivity extends ListActivity {
         content.add(new Item(BufferActivity.class.getSimpleName(), new Intent(this, BufferActivity.class)));
         content.add(new Item(FlatMapActivity.class.getSimpleName(), new Intent(this, FlatMapActivity.class)));
         content.add(new Item(GroupbyActivity.class.getSimpleName(), new Intent(this, GroupbyActivity.class)));
+        content.add(new Item(MapAndCastActivity.class.getSimpleName(), new Intent(this, MapAndCastActivity.class)));
+        content.add(new Item(ScanActivity.class.getSimpleName(), new Intent(this, ScanActivity.class)));
+        content.add(new Item(WindowActivity.class.getSimpleName(), new Intent(this, WindowActivity.class)));
         mMainAdapter = new MainAdapter();
         setListAdapter(mMainAdapter);
     }
