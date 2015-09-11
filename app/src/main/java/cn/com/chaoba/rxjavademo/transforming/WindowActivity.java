@@ -30,8 +30,8 @@ public class WindowActivity extends BaseActivity {
     }
 
     private Observable<Observable<Long>> wondowTimeObserver() {
-        return Observable.interval(100, TimeUnit.MILLISECONDS)
-                .window(300, TimeUnit.MILLISECONDS)
+        return Observable.interval(1000, TimeUnit.MILLISECONDS)
+                .window(3000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread());
     }
 

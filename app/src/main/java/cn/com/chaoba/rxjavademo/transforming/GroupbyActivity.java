@@ -26,12 +26,11 @@ public class GroupbyActivity extends BaseActivity {
 
             @Override
             public void onNext(GroupedObservable<Integer, Integer> groupedObservable) {
-                log("key:" + groupedObservable.getKey());
-                groupedObservable.count().subscribe(integer -> log(integer));
+                groupedObservable.count().subscribe(integer -> log("key" + groupedObservable.getKey() + " contains:" + integer + " numbers"));
             }
         }));
         mRButton.setText("groupByKeyValue");
-        mRButton.setOnClickListener(e -> groupByKeyValueObserver().subscribe(new Subscriber<GroupedObservable<Integer, Integer>>() {
+        mRButton.setOnClickListener(e -> groupByKeyValueObserver().subscribe(new Subscriber<GroupedObservable<Integer, String>>() {
             @Override
             public void onCompleted() {
 
@@ -43,7 +42,7 @@ public class GroupbyActivity extends BaseActivity {
             }
 
             @Override
-            public void onNext(GroupedObservable<Integer, Integer> integerIntegerGroupedObservable) {
+            public void onNext(GroupedObservable<Integer, String> integerIntegerGroupedObservable) {
                 if (integerIntegerGroupedObservable.getKey() == 0) {
                     integerIntegerGroupedObservable.subscribe(integer -> log(integer));
                 }
@@ -55,8 +54,8 @@ public class GroupbyActivity extends BaseActivity {
         return Observable.just(1, 2, 3, 4, 5, 6, 7, 8, 9).groupBy(integer -> integer % 2);
     }
 
-    private Observable<GroupedObservable<Integer, Integer>> groupByKeyValueObserver() {
+    private Observable<GroupedObservable<Integer, String>> groupByKeyValueObserver() {
         return Observable.just(1, 2, 3, 4, 5, 6, 7, 8, 9)
-                .groupBy(integer -> integer % 2, integer -> integer * 2);
+                .groupBy(integer -> integer % 2, integer -> "groupByKeyValue:" + integer);
     }
 }

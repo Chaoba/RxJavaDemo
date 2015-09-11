@@ -13,7 +13,7 @@ public class FlatMapActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("flatMap");
-        mLButton.setOnClickListener(e -> flatMapObserver().subscribe(i -> log("flatMap:" + i)));
+        mLButton.setOnClickListener(e -> flatMapObserver().subscribe(i -> log(i)));
         mRButton.setText("flatMapIterable");
         mRButton.setOnClickListener(e -> flatMapIterableObserver().subscribe(i -> log("flatMapIterable:" + i)));
     }
