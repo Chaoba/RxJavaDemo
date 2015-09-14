@@ -15,6 +15,7 @@ import cn.com.chaoba.rxjavademo.Filtering.DebounceActivity;
 import cn.com.chaoba.rxjavademo.Filtering.DistinctActivity;
 import cn.com.chaoba.rxjavademo.Filtering.ElementAtAndFilterActivity;
 import cn.com.chaoba.rxjavademo.Filtering.FirstActivity;
+import cn.com.chaoba.rxjavademo.Filtering.SkipAndTakeActivity;
 import cn.com.chaoba.rxjavademo.creatingobserver.CreateAndRangeActivity;
 import cn.com.chaoba.rxjavademo.creatingobserver.DeferAndJustActivity;
 import cn.com.chaoba.rxjavademo.creatingobserver.FromActivity;
@@ -49,6 +50,7 @@ public class MainActivity extends ListActivity {
         content.add(new Item(DistinctActivity.class.getSimpleName(), new Intent(this, DistinctActivity.class)));
         content.add(new Item(ElementAtAndFilterActivity.class.getSimpleName(), new Intent(this, ElementAtAndFilterActivity.class)));
         content.add(new Item(FirstActivity.class.getSimpleName(), new Intent(this, FirstActivity.class)));
+        content.add(new Item(SkipAndTakeActivity.class.getSimpleName(), new Intent(this, SkipAndTakeActivity.class)));
         mMainAdapter = new MainAdapter();
         setListAdapter(mMainAdapter);
     }

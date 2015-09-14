@@ -13,14 +13,14 @@ public class ElementAtAndFilterActivity extends BaseActivity {
         mLButton.setText("elementAt");
         mLButton.setOnClickListener(e -> elementAtObserver().subscribe(i -> log("elementAt:" + i)));
         mRButton.setText("Filter");
-        mRButton.setOnClickListener(e -> FilterObserver().subscribe(i -> log("Filter:" + i)));
+        mRButton.setOnClickListener(e -> filterObserver().subscribe(i -> log("Filter:" + i)));
     }
 
     private Observable<Integer> elementAtObserver() {
         return Observable.just(0, 1, 2, 3, 4, 5).elementAt(2);
     }
 
-    private Observable<Integer> FilterObserver() {
+    private Observable<Integer> filterObserver() {
         return Observable.just(0, 1, 2, 3, 4, 5).filter(i -> i < 3);
     }
 

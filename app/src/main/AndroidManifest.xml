@@ -1,143 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="cn.com.chaoba.rxjavademo"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.com.chaoba.rxjavademo" >
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".BaseActivity"
-            android:label="@string/title_activity_base">
+            android:label="@string/title_activity_base" >
         </activity>
         <activity
             android:name=".creatingobserver.CreateAndRangeActivity"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".BaseActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity"/>
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".creatingobserver.DeferAndJustActivity"
             android:label="@string/title_activity_defer"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".BaseActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity"/>
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".creatingobserver.FromActivity"
             android:label="@string/title_activity_from"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".BaseActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity"/>
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".creatingobserver.IntervalActivity"
             android:label="@string/title_activity_interval"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".BaseActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity"/>
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".creatingobserver.RepeatAndTimerActivity"
             android:label="@string/title_activity_repeat"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".BaseActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity"/>
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".transforming.BufferActivity"
             android:label="@string/title_activity_buffer"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".BaseActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity"/>
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".transforming.FlatMapActivity"
             android:label="@string/title_activity_flat_map"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".BaseActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity"/>
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".transforming.GroupbyActivity"
             android:label="@string/title_activity_groupby"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".BaseActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity"/>
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".transforming.MapAndCastActivity"
             android:label="@string/title_activity_map"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".BaseActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity"/>
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".transforming.ScanActivity"
             android:label="@string/title_activity_scan"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".BaseActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity"/>
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".transforming.WindowActivity"
             android:label="@string/title_activity_window"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".BaseActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity"/>
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".Filtering.DebounceActivity"
             android:label="@string/title_activity_debounce"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".BaseActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity"/>
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".Filtering.DistinctActivity"
             android:label="@string/title_activity_distinct"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".BaseActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity"/>
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".Filtering.ElementAtAndFilterActivity"
             android:label="@string/title_activity_element_at_and_first"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".BaseActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity"/>
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
         <activity
             android:name=".Filtering.FirstActivity"
             android:label="@string/title_activity_fitst"
-            android:parentActivityName=".BaseActivity">
+            android:parentActivityName=".BaseActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cn.com.chaoba.rxjavademo.BaseActivity"/>
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
+        </activity>
+        <activity
+            android:name=".Filtering.SkipAndTakeActivity"
+            android:label="@string/title_activity_skip_and_take"
+            android:parentActivityName=".BaseActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
     </application>
 

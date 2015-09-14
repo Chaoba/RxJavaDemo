@@ -13,18 +13,18 @@ public class FirstActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("First");
-        mLButton.setOnClickListener(e -> FirstObserver().subscribe(i -> log("First:" + i)));
+        mLButton.setOnClickListener(e -> firstObserver().subscribe(i -> log("First:" + i)));
         mRButton.setText(" Blocking");
         mRButton.setOnClickListener(e -> {
-            log("blocking:" + FilterObserver().first(i -> i > 1));
+            log("blocking:" + filterObserver().first(i -> i > 1));
         });
     }
 
-    private Observable<Integer> FirstObserver() {
+    private Observable<Integer> firstObserver() {
         return Observable.just(0, 1, 2, 3, 4, 5).first(i -> i > 1);
     }
 
-    private BlockingObservable<Integer> FilterObserver() {
+    private BlockingObservable<Integer> filterObserver() {
         return Observable.create(new Observable.OnSubscribe<Integer>() {
             @Override
             public void call(Subscriber<? super Integer> subscriber) {
