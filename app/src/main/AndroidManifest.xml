@@ -115,6 +115,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
         </activity>
+        <activity
+            android:name=".Filtering.DistinctActivity"
+            android:label="@string/title_activity_distinct"
+            android:parentActivityName=".BaseActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
+        </activity>
+        <activity
+            android:name=".Filtering.ElementAtAndFirstActivity"
+            android:label="@string/title_activity_element_at_and_first"
+            android:parentActivityName=".BaseActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.com.chaoba.rxjavademo.BaseActivity" />
+        </activity>
     </application>
 
 </manifest>

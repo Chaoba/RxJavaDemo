@@ -16,4 +16,6 @@
     <string name="title_activity_scan">ScanActivity</string>
     <string name="title_activity_window">WindowActivity</string>
     <string name="title_activity_debounce">DebounceActivity</string>
+    <string name="title_activity_distinct">DistinctActivity</string>
+    <string name="title_activity_element_at_and_first">ElementAtAndFirstActivity</string>
 </resources>
