@@ -20,4 +20,5 @@
     <string name="title_activity_element_at_and_first">ElementAtAndFirstActivity</string>
     <string name="title_activity_fitst">FitstActivity</string>
     <string name="title_activity_skip_and_take">SkipAndTakeActivity</string>
+    <string name="title_activity_sample">SampleActivity</string>
 </resources>

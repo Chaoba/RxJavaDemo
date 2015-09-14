@@ -1,5 +1,6 @@
 package cn.com.chaoba.rxjavademo;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import cn.com.chaoba.rxjavademo.Filtering.DebounceActivity;
 import cn.com.chaoba.rxjavademo.Filtering.DistinctActivity;
 import cn.com.chaoba.rxjavademo.Filtering.ElementAtAndFilterActivity;
 import cn.com.chaoba.rxjavademo.Filtering.FirstActivity;
+import cn.com.chaoba.rxjavademo.Filtering.SampleActivity;
 import cn.com.chaoba.rxjavademo.Filtering.SkipAndTakeActivity;
 import cn.com.chaoba.rxjavademo.creatingobserver.CreateAndRangeActivity;
 import cn.com.chaoba.rxjavademo.creatingobserver.DeferAndJustActivity;
@@ -35,22 +37,23 @@ public class MainActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        content.add(new Item(CreateAndRangeActivity.class.getSimpleName(), new Intent(this, CreateAndRangeActivity.class)));
-        content.add(new Item(DeferAndJustActivity.class.getSimpleName(), new Intent(this, DeferAndJustActivity.class)));
-        content.add(new Item(FromActivity.class.getSimpleName(), new Intent(this, FromActivity.class)));
-        content.add(new Item(IntervalActivity.class.getSimpleName(), new Intent(this, IntervalActivity.class)));
-        content.add(new Item(RepeatAndTimerActivity.class.getSimpleName(), new Intent(this, RepeatAndTimerActivity.class)));
-        content.add(new Item(BufferActivity.class.getSimpleName(), new Intent(this, BufferActivity.class)));
-        content.add(new Item(FlatMapActivity.class.getSimpleName(), new Intent(this, FlatMapActivity.class)));
-        content.add(new Item(GroupbyActivity.class.getSimpleName(), new Intent(this, GroupbyActivity.class)));
-        content.add(new Item(MapAndCastActivity.class.getSimpleName(), new Intent(this, MapAndCastActivity.class)));
-        content.add(new Item(ScanActivity.class.getSimpleName(), new Intent(this, ScanActivity.class)));
-        content.add(new Item(WindowActivity.class.getSimpleName(), new Intent(this, WindowActivity.class)));
-        content.add(new Item(DebounceActivity.class.getSimpleName(), new Intent(this, DebounceActivity.class)));
-        content.add(new Item(DistinctActivity.class.getSimpleName(), new Intent(this, DistinctActivity.class)));
-        content.add(new Item(ElementAtAndFilterActivity.class.getSimpleName(), new Intent(this, ElementAtAndFilterActivity.class)));
-        content.add(new Item(FirstActivity.class.getSimpleName(), new Intent(this, FirstActivity.class)));
-        content.add(new Item(SkipAndTakeActivity.class.getSimpleName(), new Intent(this, SkipAndTakeActivity.class)));
+        content.add(new Item(CreateAndRangeActivity.class));
+        content.add(new Item(DeferAndJustActivity.class));
+        content.add(new Item(FromActivity.class));
+        content.add(new Item(IntervalActivity.class));
+        content.add(new Item(RepeatAndTimerActivity.class));
+        content.add(new Item(BufferActivity.class));
+        content.add(new Item(FlatMapActivity.class));
+        content.add(new Item(GroupbyActivity.class));
+        content.add(new Item(MapAndCastActivity.class));
+        content.add(new Item(ScanActivity.class));
+        content.add(new Item(WindowActivity.class));
+        content.add(new Item(DebounceActivity.class));
+        content.add(new Item(DistinctActivity.class));
+        content.add(new Item(ElementAtAndFilterActivity.class));
+        content.add(new Item(FirstActivity.class));
+        content.add(new Item(SkipAndTakeActivity.class));
+        content.add(new Item(SampleActivity.class));
         mMainAdapter = new MainAdapter();
         setListAdapter(mMainAdapter);
     }
@@ -90,10 +93,11 @@ public class MainActivity extends ListActivity {
         public String title;
         public Intent goIntent;
 
-        public Item(String title, Intent goIntent) {
-            this.title = title;
-            this.goIntent = goIntent;
+        public Item(Class<? extends Activity> t) {
+            this.title = t.getSimpleName();
+            this.goIntent = new Intent(MainActivity.this, t);
         }
+
     }
 
 }
