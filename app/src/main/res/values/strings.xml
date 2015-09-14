@@ -18,4 +18,5 @@
     <string name="title_activity_debounce">DebounceActivity</string>
     <string name="title_activity_distinct">DistinctActivity</string>
     <string name="title_activity_element_at_and_first">ElementAtAndFirstActivity</string>
+    <string name="title_activity_fitst">FitstActivity</string>
 </resources>

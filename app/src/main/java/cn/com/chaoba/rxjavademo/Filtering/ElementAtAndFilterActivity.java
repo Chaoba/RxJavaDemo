@@ -5,23 +5,23 @@ import android.os.Bundle;
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
 
-public class ElementAtAndFirstActivity extends BaseActivity {
+public class ElementAtAndFilterActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("elementAt");
         mLButton.setOnClickListener(e -> elementAtObserver().subscribe(i -> log("elementAt:" + i)));
-        mRButton.setText("first");
-        mRButton.setOnClickListener(e -> FirstdObserver().subscribe(i -> log("first:" + i)));
+        mRButton.setText("Filter");
+        mRButton.setOnClickListener(e -> FilterObserver().subscribe(i -> log("Filter:" + i)));
     }
 
     private Observable<Integer> elementAtObserver() {
         return Observable.just(0, 1, 2, 3, 4, 5).elementAt(2);
     }
 
-    private Observable<Integer> FirstdObserver() {
-        return Observable.just(0, 1, 2, 3, 4, 5).first();
+    private Observable<Integer> FilterObserver() {
+        return Observable.just(0, 1, 2, 3, 4, 5).filter(i -> i < 3);
     }
 
 
