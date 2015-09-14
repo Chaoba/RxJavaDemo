@@ -15,4 +15,5 @@
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_scan">ScanActivity</string>
     <string name="title_activity_window">WindowActivity</string>
+    <string name="title_activity_debounce">DebounceActivity</string>
 </resources>

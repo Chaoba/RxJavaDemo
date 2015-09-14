@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import cn.com.chaoba.rxjavademo.Filtering.DebounceActivity;
 import cn.com.chaoba.rxjavademo.creatingobserver.CreateAndRangeActivity;
 import cn.com.chaoba.rxjavademo.creatingobserver.DeferAndJustActivity;
 import cn.com.chaoba.rxjavademo.creatingobserver.FromActivity;
@@ -41,6 +42,7 @@ public class MainActivity extends ListActivity {
         content.add(new Item(MapAndCastActivity.class.getSimpleName(), new Intent(this, MapAndCastActivity.class)));
         content.add(new Item(ScanActivity.class.getSimpleName(), new Intent(this, ScanActivity.class)));
         content.add(new Item(WindowActivity.class.getSimpleName(), new Intent(this, WindowActivity.class)));
+        content.add(new Item(DebounceActivity.class.getSimpleName(), new Intent(this, DebounceActivity.class)));
         mMainAdapter = new MainAdapter();
         setListAdapter(mMainAdapter);
     }

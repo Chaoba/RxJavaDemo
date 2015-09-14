@@ -6,6 +6,9 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+
 public class BaseActivity extends AppCompatActivity {
 
     protected Button mLButton, mRButton;
@@ -24,7 +27,10 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void log(Object s) {
         Log.d(TAG, String.valueOf(s));
-        mResultView.setText(mResultView.getText() + "\n" + s);
+        Observable.just(s).observeOn(AndroidSchedulers.mainThread()).subscribe(i -> {
+            mResultView.setText(mResultView.getText() + "\n" + i);
+        });
+
     }
 
 }
