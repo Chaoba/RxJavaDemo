@@ -1,103 +1,120 @@
 package cn.com.chaoba.rxjavademo;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.SimpleAdapter;
 
+import java.text.Collator;
 import java.util.ArrayList;
-
-import cn.com.chaoba.rxjavademo.Filtering.DebounceActivity;
-import cn.com.chaoba.rxjavademo.Filtering.DistinctActivity;
-import cn.com.chaoba.rxjavademo.Filtering.ElementAtAndFilterActivity;
-import cn.com.chaoba.rxjavademo.Filtering.FirstActivity;
-import cn.com.chaoba.rxjavademo.Filtering.SampleActivity;
-import cn.com.chaoba.rxjavademo.Filtering.SkipAndTakeActivity;
-import cn.com.chaoba.rxjavademo.creatingobserver.CreateAndRangeActivity;
-import cn.com.chaoba.rxjavademo.creatingobserver.DeferAndJustActivity;
-import cn.com.chaoba.rxjavademo.creatingobserver.FromActivity;
-import cn.com.chaoba.rxjavademo.creatingobserver.IntervalActivity;
-import cn.com.chaoba.rxjavademo.creatingobserver.RepeatAndTimerActivity;
-import cn.com.chaoba.rxjavademo.transforming.BufferActivity;
-import cn.com.chaoba.rxjavademo.transforming.FlatMapActivity;
-import cn.com.chaoba.rxjavademo.transforming.GroupbyActivity;
-import cn.com.chaoba.rxjavademo.transforming.MapAndCastActivity;
-import cn.com.chaoba.rxjavademo.transforming.ScanActivity;
-import cn.com.chaoba.rxjavademo.transforming.WindowActivity;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends ListActivity {
-    ArrayList<Item> content = new ArrayList<>();
-    MainAdapter mMainAdapter;
+    private final String CATERGORY = "cn.com.chaoba.rxjavademo.category";
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+        String path = intent.getStringExtra(CATERGORY);
+
+        if (path == null) {
+            path = "";
+        }
+
+        setListAdapter(new SimpleAdapter(this, getData(path),
+                android.R.layout.simple_list_item_1, new String[]{"title"},
+                new int[]{android.R.id.text1}));
+        getListView().setTextFilterEnabled(true);
+    }
+
+    protected List<Map<String, Object>> getData(String prefix) {
+        List<Map<String, Object>> myData = new ArrayList<>();
+
+        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(CATERGORY);
+
+        PackageManager pm = getPackageManager();
+        List<ResolveInfo> list = pm.queryIntentActivities(mainIntent, 0);
+
+        if (null == list)
+            return myData;
+
+        int len = list.size();
+
+        Map<String, Boolean> entries = new HashMap<String, Boolean>();
+
+        for (int i = 0; i < len; i++) {
+            ResolveInfo info = list.get(i);
+            String label = info.activityInfo.name;
+            if (TextUtils.isEmpty(prefix) || label.contains(prefix)) {
+                String[] labelPath = label.split("\\.");
+
+                String nextLabel = TextUtils.isEmpty(prefix) ? labelPath[labelPath.length - 2] : labelPath[labelPath.length - 1];
+
+                if (!TextUtils.isEmpty(prefix)) {
+                    addItem(myData, nextLabel, activityIntent(
+                            info.activityInfo.applicationInfo.packageName,
+                            info.activityInfo.name));
+                } else {
+                    if (entries.get(nextLabel) == null) {
+                        addItem(myData, nextLabel, browseIntent(label.substring(0, label.lastIndexOf("."))));
+                        entries.put(nextLabel, true);
+                    }
+                }
+            }
+        }
+
+        Collections.sort(myData, sDisplayNameComparator);
+
+        return myData;
+    }
+
+    private final static Comparator<Map<String, Object>> sDisplayNameComparator =
+            new Comparator<Map<String, Object>>() {
+                private final Collator collator = Collator.getInstance();
+
+                public int compare(Map<String, Object> map1, Map<String, Object> map2) {
+                    return collator.compare(map1.get("title"), map2.get("title"));
+                }
+            };
+
+    protected Intent activityIntent(String pkg, String componentName) {
+        Intent result = new Intent();
+        result.setClassName(pkg, componentName);
+        return result;
+    }
+
+    protected Intent browseIntent(String path) {
+        Intent result = new Intent();
+        result.setClass(this, MainActivity.class);
+        result.putExtra(CATERGORY, path);
+        return result;
+    }
+
+    protected void addItem(List<Map<String, Object>> data, String name, Intent intent) {
+        Map<String, Object> temp = new HashMap<String, Object>();
+        temp.put("title", name);
+        temp.put("intent", intent);
+        data.add(temp);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        content.add(new Item(CreateAndRangeActivity.class));
-        content.add(new Item(DeferAndJustActivity.class));
-        content.add(new Item(FromActivity.class));
-        content.add(new Item(IntervalActivity.class));
-        content.add(new Item(RepeatAndTimerActivity.class));
-        content.add(new Item(BufferActivity.class));
-        content.add(new Item(FlatMapActivity.class));
-        content.add(new Item(GroupbyActivity.class));
-        content.add(new Item(MapAndCastActivity.class));
-        content.add(new Item(ScanActivity.class));
-        content.add(new Item(WindowActivity.class));
-        content.add(new Item(DebounceActivity.class));
-        content.add(new Item(DistinctActivity.class));
-        content.add(new Item(ElementAtAndFilterActivity.class));
-        content.add(new Item(FirstActivity.class));
-        content.add(new Item(SkipAndTakeActivity.class));
-        content.add(new Item(SampleActivity.class));
-        mMainAdapter = new MainAdapter();
-        setListAdapter(mMainAdapter);
-    }
-
+    @SuppressWarnings("unchecked")
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        startActivity(mMainAdapter.getItem(position).goIntent);
-    }
+        Map<String, Object> map = (Map<String, Object>) l.getItemAtPosition(position);
 
-    class MainAdapter extends BaseAdapter {
-
-        @Override
-
-        public int getCount() {
-            return content.size();
-        }
-
-        @Override
-        public Item getItem(int position) {
-            return content.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View v = View.inflate(MainActivity.this, android.R.layout.simple_list_item_1, null);
-            TextView textView = (TextView) v.findViewById(android.R.id.text1);
-            textView.setText(getItem(position).title);
-            return v;
-        }
-    }
-
-    class Item {
-        public String title;
-        public Intent goIntent;
-
-        public Item(Class<? extends Activity> t) {
-            this.title = t.getSimpleName();
-            this.goIntent = new Intent(MainActivity.this, t);
-        }
-
+        Intent intent = (Intent) map.get("intent");
+        startActivity(intent);
     }
 
 }
