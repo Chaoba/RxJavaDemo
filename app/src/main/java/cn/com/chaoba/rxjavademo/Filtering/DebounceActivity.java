@@ -1,4 +1,4 @@
-package cn.com.chaoba.rxjavademo.Filtering;
+package cn.com.chaoba.rxjavademo.filtering;
 
 import android.os.Bundle;
 
