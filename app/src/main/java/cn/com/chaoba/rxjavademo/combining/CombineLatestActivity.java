@@ -8,7 +8,6 @@ import java.util.List;
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
 import rx.Subscriber;
-import rx.functions.FuncN;
 import rx.schedulers.Schedulers;
 
 public class CombineLatestActivity extends BaseActivity {
@@ -51,16 +50,13 @@ public class CombineLatestActivity extends BaseActivity {
         for (int i = 1; i < 5; i++) {
             list.add(createObserver(i));
         }
-        return Observable.combineLatest(list, new FuncN<Integer>() {
-            @Override
-            public Integer call(Object... args) {
-                int temp = 0;
-                for (Object i : args) {
-                    log(i);
-                    temp += (Integer) i;
-                }
-                return temp;
+        return Observable.combineLatest(list, args -> {
+            int temp = 0;
+            for (Object i : args) {
+                log(i);
+                temp += (Integer) i;
             }
+            return temp;
         });
     }
 
