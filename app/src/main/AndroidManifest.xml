@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="cn.com.chaoba.rxjavademo"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest
+    package="cn.com.chaoba.rxjavademo"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -191,6 +192,16 @@
         </activity>
         <activity
             android:name=".combining.MergeActivity"
+            android:label="@string/title_activity_combine_latest"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="cn.com.chaoba.rxjavademo.category"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".combining.StartWithAndSwitchActivity"
             android:label="@string/title_activity_combine_latest"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
