@@ -22,4 +22,5 @@
     <string name="title_activity_skip_and_take">SkipAndTakeActivity</string>
     <string name="title_activity_sample">SampleActivity</string>
     <string name="title_activity_combine_latest">CombineLatestActivity</string>
+    <string name="title_activity_catch">CatchActivity</string>
 </resources>

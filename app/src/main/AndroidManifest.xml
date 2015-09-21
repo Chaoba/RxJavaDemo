@@ -220,6 +220,26 @@
                 <category android:name="cn.com.chaoba.rxjavademo.category"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".errorhandling.OnErrorActivity"
+            android:label="@string/title_activity_catch"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="cn.com.chaoba.rxjavademo.category"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".errorhandling.OnExceptionActivity"
+            android:label="@string/title_activity_catch"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="cn.com.chaoba.rxjavademo.category"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
