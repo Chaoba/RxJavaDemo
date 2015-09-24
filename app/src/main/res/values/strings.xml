@@ -18,10 +18,11 @@
     <string name="title_activity_debounce">DebounceActivity</string>
     <string name="title_activity_distinct">DistinctActivity</string>
     <string name="title_activity_element_at_and_first">ElementAtAndFirstActivity</string>
-    <string name="title_activity_fitst">FitstActivity</string>
+    <string name="title_activity_first">FirstActivity</string>
     <string name="title_activity_skip_and_take">SkipAndTakeActivity</string>
     <string name="title_activity_sample">SampleActivity</string>
     <string name="title_activity_combine_latest">CombineLatestActivity</string>
     <string name="title_activity_catch">CatchActivity</string>
-    <string name="title_activity_retyr">RetryActivity</string>
+    <string name="title_activity_retry">RetryActivity</string>
+    <string name="title_activity_delay">DelayActivity</string>
 </resources>

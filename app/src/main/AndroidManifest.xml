@@ -145,7 +145,7 @@
         </activity>
         <activity
             android:name=".filtering.FirstActivity"
-            android:label="@string/title_activity_fitst">
+            android:label="@string/title_activity_first">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -242,7 +242,17 @@
         </activity>
         <activity
             android:name=".errorhandling.RetryActivity"
-            android:label="@string/title_activity_retyr"
+            android:label="@string/title_activity_retry"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="cn.com.chaoba.rxjavademo.category"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".utility.DelayActivity"
+            android:label="@string/title_activity_delay"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
