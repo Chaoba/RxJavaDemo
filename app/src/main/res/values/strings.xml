@@ -25,5 +25,7 @@
     <string name="title_activity_catch">CatchActivity</string>
     <string name="title_activity_retry">RetryActivity</string>
     <string name="title_activity_delay">DelayActivity</string>
-    <string name="title_activity_do">Dotivity</string>
+    <string name="title_activity_do">MeterializeActivity</string>
+    <string name="title_activity_meterialize">MeterializeActivity</string>
+
 </resources>
