@@ -29,5 +29,7 @@
     <string name="title_activity_meterialize">MeterializeActivity</string>
     <string name="title_activity_subon">SubscribeOnAndObserverOnActivity</string>
     <string name="title_activity_time">TimeIntervalTimeStampActivity</string>
+    <string name="title_activity_timeout">TimeoutActivity</string>
+    <string name="title_activity_using">UsingActivity</string>
 
 </resources>

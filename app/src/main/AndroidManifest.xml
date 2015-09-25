@@ -300,6 +300,26 @@
                 <category android:name="cn.com.chaoba.rxjavademo.category"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".utility.TimeoutActivity"
+            android:label="@string/title_activity_timeout"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="cn.com.chaoba.rxjavademo.category"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".utility.UsingActivity"
+            android:label="@string/title_activity_using"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="cn.com.chaoba.rxjavademo.category"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
