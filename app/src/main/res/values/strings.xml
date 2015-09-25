@@ -27,5 +27,6 @@
     <string name="title_activity_delay">DelayActivity</string>
     <string name="title_activity_do">MeterializeActivity</string>
     <string name="title_activity_meterialize">MeterializeActivity</string>
+    <string name="title_activity_subon">SubscribeOnAndObserverOnActivity</string>
 
 </resources>
