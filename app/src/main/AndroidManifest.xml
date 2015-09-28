@@ -359,6 +359,16 @@
                 <category android:name="cn.com.chaoba.rxjavademo.category"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".conditional_boolean.SkipUntilSkipWhileActivity"
+            android:label="@string/title_activity_skip"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="cn.com.chaoba.rxjavademo.category"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
