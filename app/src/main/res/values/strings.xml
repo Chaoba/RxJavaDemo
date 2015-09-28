@@ -31,5 +31,6 @@
     <string name="title_activity_time">TimeIntervalTimeStampActivity</string>
     <string name="title_activity_timeout">TimeoutActivity</string>
     <string name="title_activity_using">UsingActivity</string>
+    <string name="title_activity_all_abm">AllAndAmbActivity</string>
 
 </resources>
