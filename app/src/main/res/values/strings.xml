@@ -36,5 +36,6 @@
     <string name="title_activity_defaultifempty">DefaultIfEmptyActivity</string>
     <string name="title_activity_sequenceequal">SequenceEqualActivity</string>
     <string name="title_activity_skip">SkipUntilSkipWhileActivity</string>
+    <string name="title_activity_take">TakeUntilTakeWhileActivity</string>
 
 </resources>
