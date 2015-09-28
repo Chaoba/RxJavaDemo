@@ -32,5 +32,6 @@
     <string name="title_activity_timeout">TimeoutActivity</string>
     <string name="title_activity_using">UsingActivity</string>
     <string name="title_activity_all_abm">AllAndAmbActivity</string>
+    <string name="title_activity_contains">ContainsActivity</string>
 
 </resources>
