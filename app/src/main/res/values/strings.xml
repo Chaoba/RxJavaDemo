@@ -34,5 +34,6 @@
     <string name="title_activity_all_abm">AllAndAmbActivity</string>
     <string name="title_activity_contains">ContainsActivity</string>
     <string name="title_activity_defaultifempty">DefaultIfEmptyActivity</string>
+    <string name="title_activity_sequenceequal">SequenceEqualActivity</string>
 
 </resources>
