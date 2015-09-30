@@ -319,7 +319,8 @@
 
                 <category android:name="cn.com.chaoba.rxjavademo.category"/>
             </intent-filter>
-        </activity><activity
+        </activity>
+        <activity
             android:name=".conditional_boolean.AllAndAmbActivity"
             android:label="@string/title_activity_all_abm"
             android:theme="@style/AppTheme.NoActionBar">
@@ -372,6 +373,25 @@
         <activity
             android:name=".conditional_boolean.TakeUntilTakeWhileActivity"
             android:label="@string/title_activity_take"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="cn.com.chaoba.rxjavademo.category"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".aggregate.ConcatAndCountActivity"
+            android:label="@string/title_activity_contact"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="cn.com.chaoba.rxjavademo.category"/>
+            </intent-filter>
+        </activity><activity
+            android:name=".aggregate.Reducectivity"
+            android:label="@string/title_activity_reduce"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

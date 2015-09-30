@@ -37,5 +37,7 @@
     <string name="title_activity_sequenceequal">SequenceEqualActivity</string>
     <string name="title_activity_skip">SkipUntilSkipWhileActivity</string>
     <string name="title_activity_take">TakeUntilTakeWhileActivity</string>
+    <string name="title_activity_contact">ContactAndCountActivity</string>
+    <string name="title_activity_reduce">Reducectivity</string>
 
 </resources>
