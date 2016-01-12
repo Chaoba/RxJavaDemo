@@ -39,5 +39,6 @@
     <string name="title_activity_take">TakeUntilTakeWhileActivity</string>
     <string name="title_activity_contact">ContactAndCountActivity</string>
     <string name="title_activity_reduce">Reducectivity</string>
+    <string name="title_activity_publish_connect">PublishAndConnectActivity</string>
 
 </resources>
