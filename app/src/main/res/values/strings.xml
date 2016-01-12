@@ -40,5 +40,6 @@
     <string name="title_activity_contact">ContactAndCountActivity</string>
     <string name="title_activity_reduce">Reducectivity</string>
     <string name="title_activity_publish_connect">PublishAndConnectActivity</string>
+    <string name="title_activity_refcount">RefCountActivity</string>
 
 </resources>
