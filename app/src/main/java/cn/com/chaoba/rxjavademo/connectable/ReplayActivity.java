@@ -45,7 +45,7 @@ public class ReplayActivity extends BaseActivity {
     private ConnectableObservable<Long> relayCountObserver() {
         Observable<Long> obser = Observable.interval(1, TimeUnit.SECONDS);
         obser.observeOn(Schedulers.newThread());
-        return  obser.replay(2);
+        return obser.replay(2);
     }
 
     private ConnectableObservable<Long> relayTimeObserver() {
