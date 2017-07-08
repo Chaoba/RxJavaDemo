@@ -1,12 +1,14 @@
 package cn.com.chaoba.rxjavademo.creatingobserver;
 
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.Random;
 
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Action1;
 
 public class CreateAndRangeActivity extends BaseActivity {
 
@@ -14,24 +16,39 @@ public class CreateAndRangeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("Create");
-        mLButton.setOnClickListener(e -> createObserver().subscribe(new Subscriber<Integer>() {
+        mLButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCompleted() {
-                log("onComplete!");
-            }
+            public void onClick(View v) {
+                createObserver().subscribe(new Subscriber<Integer>() {
+                    @Override
+                    public void onCompleted() {
+                        log("onComplete!");
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                log("onError:" + e.getMessage());
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        log("onError:" + e.getMessage());
+                    }
 
-            @Override
-            public void onNext(Integer integer) {
-                log("onNext:" + integer);
+                    @Override
+                    public void onNext(Integer integer) {
+                        log("onNext:" + integer);
+                    }
+                });
             }
-        }));
+        });
         mRButton.setText("Range");
-        mRButton.setOnClickListener(e -> rangeObserver().subscribe(i -> log(i)));
+        mRButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rangeObserver().subscribe(new Action1<Integer>() {
+                    @Override
+                    public void call(Integer integer) {
+                        log(integer);
+                    }
+                });
+            }
+        });
     }
 
     private Observable<Integer> createObserver() {
