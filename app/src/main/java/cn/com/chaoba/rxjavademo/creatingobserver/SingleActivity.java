@@ -32,7 +32,6 @@ public class SingleActivity extends BaseActivity {
                     @Override
                     public void onError(Throwable error) {
                         log(error.getMessage());
-
                     }
                 });
             }
@@ -57,7 +56,6 @@ public class SingleActivity extends BaseActivity {
                     @Override
                     public void onError(Throwable error) {
                         log(error.getMessage());
-
                     }
                 });
             }

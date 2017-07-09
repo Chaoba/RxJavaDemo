@@ -6,6 +6,7 @@
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_create">CreateAndRangeActivity</string>
     <string name="title_activity_single">SingleActivity</string>
+    <string name="title_activity_completable">CompletableActivity</string>
     <string name="title_activity_defer">DeferActivity</string>
     <string name="title_activity_from">FromActivity</string>
     <string name="title_activity_interval">IntervalActivity</string>
