@@ -41,7 +41,7 @@ public class CreateAndRangeActivity extends BaseActivity {
         mRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rangeObserver().subscribe(new Action1<Integer>() {
+                Observable.range(10, 5).subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer integer) {
                         log(integer);
@@ -74,10 +74,4 @@ public class CreateAndRangeActivity extends BaseActivity {
             }
         });
     }
-
-    private Observable<Integer> rangeObserver() {
-        return Observable.range(10, 5);
-    }
-
-
 }
