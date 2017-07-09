@@ -1,30 +1,61 @@
 package cn.com.chaoba.rxjavademo.creatingobserver;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.view.View;
 
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
+import rx.functions.Action1;
+import rx.functions.Func0;
 
 public class DeferAndJustActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Observable<Long> deferObservable = DeferObserver();
-        Observable<Long> justObservable = JustObserver();
+        Observable<Long> deferObservable = getDefer();
+        Observable<Long> justObservable = getJust();
         mLButton.setText("Defer");
         mRButton.setText("Just");
-        mLButton.setOnClickListener(e -> deferObservable.subscribe(time -> log("defer:" + time)));
-        mRButton.setOnClickListener(e -> justObservable.subscribe(time -> log("just:" + time)));
+        mLButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deferObservable.subscribe(new Action1<Long>() {
+                    @Override
+                    public void call(Long time) {
+                        log("defer:" + time);
+                    }
+                });
+            }
+        });
+
+        mRButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                justObservable.subscribe(new Action1<Long>() {
+                    @Override
+                    public void call(Long time) {
+                        log("just:" + time);
+                    }
+                });
+            }
+        });
     }
 
-    private Observable<Long> DeferObserver() {
-        return Observable.defer(() -> Observable.just(System.currentTimeMillis()));
-    }
-
-    private Observable<Long> JustObserver() {
+    @NonNull
+    private Observable<Long> getJust() {
         return Observable.just(System.currentTimeMillis());
     }
 
+    @NonNull
+    private Observable<Long> getDefer() {
+        return Observable.defer(new Func0<Observable<Long>>() {
+            @Override
+            public Observable<Long> call() {
+                return getJust();
+            }
+        });
+    }
 
 }
