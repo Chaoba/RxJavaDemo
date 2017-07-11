@@ -43,12 +43,13 @@ public class RepeatAndTimerActivity extends BaseActivity {
     }
 
     private Observable<Integer> repeatObserver() {
-        return Observable.just(1,2,3).repeat(3);
+        return Observable.just(1, 2, 3).repeat(3);
     }
 
     private Observable<Long> timerObserver() {
         //timer by default operates on the computation Scheduler
-        return Observable.timer(1, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread());
+        return Observable.timer(1, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
 
