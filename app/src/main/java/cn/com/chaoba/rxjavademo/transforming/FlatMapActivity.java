@@ -32,10 +32,10 @@ public class FlatMapActivity extends BaseActivity {
         mRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flatMapIterableObserver().subscribe(new Action1<Integer>() {
+                flatMapIterableObserver().subscribe(new Action1<String>() {
                     @Override
-                    public void call(Integer integer) {
-                        log("flatMapIterable:" + integer);
+                    public void call(String s) {
+                        log(s);
                     }
                 });
             }
@@ -52,15 +52,15 @@ public class FlatMapActivity extends BaseActivity {
                 });
     }
 
-    private Observable<? extends Integer> flatMapIterableObserver() {
+    private Observable<String> flatMapIterableObserver() {
         return Observable.just(1, 2, 3)
                 .flatMapIterable(
-                        new Func1<Integer, Iterable<Integer>>() {
+                        new Func1<Integer, Iterable<String>>() {
                             @Override
-                            public Iterable<Integer> call(Integer integer) {
-                                ArrayList<Integer> s = new ArrayList<>();
-                                for (int i = 0; i < integer; i++) {
-                                    s.add(integer);
+                            public Iterable<String> call(Integer integer) {
+                                ArrayList<String> s = new ArrayList<>();
+                                for (int i = 0; i < 3; i++) {
+                                    s.add("flatMapIterable:" + integer);
                                 }
                                 return s;
                             }
