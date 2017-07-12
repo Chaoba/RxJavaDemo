@@ -29,7 +29,7 @@ public class IntervalActivity extends BaseActivity {
 
             @Override
             public void onNext(Long aLong) {
-                log("interval:" + aLong);
+                log(aLong);
             }
 
         };
