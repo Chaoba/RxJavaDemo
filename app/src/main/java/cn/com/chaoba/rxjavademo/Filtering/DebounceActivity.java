@@ -1,13 +1,15 @@
 package cn.com.chaoba.rxjavademo.filtering;
 
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.concurrent.TimeUnit;
 
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
 import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 public class DebounceActivity extends BaseActivity {
@@ -16,30 +18,46 @@ public class DebounceActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("throttleWithTimeout");
-        mLButton.setOnClickListener(e -> throttleWithTimeoutObserver().subscribe(i -> log("throttleWithTimeout:" + i)));
+        mLButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                throttleWithTimeoutObserver().subscribe(new Action1<Integer>() {
+                    @Override
+                    public void call(Integer i) {
+                        log("throttleWithTimeout:" + i);
+                    }
+                });
+            }
+        });
+
         mRButton.setText("debounce");
-        mRButton.setOnClickListener(e -> debounceObserver().subscribe(i -> log("debounce:" + i)));
+        mRButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                debounceObserver().subscribe(new Action1<Long>() {
+                    @Override
+                    public void call(Long i) {
+                        log("debounce:" + i);
+                    }
+                });
+            }
+        });
+
+
     }
 
-    private Observable<Integer> debounceObserver() {
-        return Observable.just(1, 2, 3, 4, 5, 6, 7, 8, 9).debounce(integer -> {
-            log(integer);
-            return Observable.create(new Observable.OnSubscribe<Integer>() {
-                @Override
-                public void call(Subscriber<? super Integer> subscriber) {
-                    if (integer % 2 == 0 && !subscriber.isUnsubscribed()) {
-                        log("complete:" + integer);
-                        subscriber.onCompleted();
+    private Observable<Long> debounceObserver() {
+        return Observable.interval(1000, TimeUnit.MILLISECONDS)
+                .debounce(new Func1<Long, Observable<Long>>() {
+                    @Override
+                    public Observable<Long> call(Long aLong) {
+                        return Observable.timer(aLong % 2 * 1500, TimeUnit.MILLISECONDS);
                     }
-                }
-            });
-        })
-                .observeOn(AndroidSchedulers.mainThread());
+                });
     }
 
     private Observable<Integer> throttleWithTimeoutObserver() {
-        return createObserver().throttleWithTimeout(200, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread());
+        return createObserver().throttleWithTimeout(200, TimeUnit.MILLISECONDS);
 
     }
 
