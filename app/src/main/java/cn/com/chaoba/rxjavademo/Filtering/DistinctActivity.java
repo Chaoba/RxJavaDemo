@@ -1,9 +1,11 @@
 package cn.com.chaoba.rxjavademo.filtering;
 
 import android.os.Bundle;
+import android.view.View;
 
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
+import rx.functions.Action1;
 
 public class DistinctActivity extends BaseActivity {
 
@@ -11,9 +13,29 @@ public class DistinctActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("distinct");
-        mLButton.setOnClickListener(e -> distinctObserver().subscribe(i -> log("distinct:" + i)));
+        mLButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                distinctObserver().subscribe(new Action1<Integer>() {
+                    @Override
+                    public void call(Integer i) {
+                        log("distinct:" + i);
+                    }
+                });
+            }
+        });
         mRButton.setText("UntilChanged");
-        mRButton.setOnClickListener(e -> distinctUntilChangedObserver().subscribe(i -> log("UntilChanged:" + i)));
+        mRButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                distinctUntilChangedObserver().subscribe(new Action1<Integer>() {
+                    @Override
+                    public void call(Integer i) {
+                        log("UntilChanged:" + i);
+                    }
+                });
+            }
+        });
     }
 
     private Observable<Integer> distinctObserver() {
