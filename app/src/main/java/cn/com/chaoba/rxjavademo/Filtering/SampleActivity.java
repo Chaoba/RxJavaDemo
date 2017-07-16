@@ -1,12 +1,13 @@
 package cn.com.chaoba.rxjavademo.filtering;
 
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.concurrent.TimeUnit;
 
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
-import rx.Subscriber;
+import rx.functions.Action1;
 
 public class SampleActivity extends BaseActivity {
 
@@ -14,35 +15,40 @@ public class SampleActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("sample");
-        mLButton.setOnClickListener(e -> sampleObserver().subscribe(i -> log("sample:" + i)));
-        mRButton.setText("throttleFirst");
-        mRButton.setOnClickListener(e -> throttleFirstObserver().subscribe(i -> log("throttleFirst:" + i)));
-    }
-
-    private Observable<Integer> sampleObserver() {
-        return createObserver().sample(1000, TimeUnit.MILLISECONDS);
-    }
-
-    private Observable<Integer> throttleFirstObserver() {
-        return createObserver().throttleFirst(1000, TimeUnit.MILLISECONDS);
-    }
-
-
-    private Observable<Integer> createObserver() {
-        return Observable.create(new Observable.OnSubscribe<Integer>() {
+        mLButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void call(Subscriber<? super Integer> subscriber) {
-                for (int i = 0; i < 20; i++) {
-                    try {
-                        Thread.sleep(200);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+            public void onClick(View v) {
+                sampleObserver().subscribe(new Action1<Long>() {
+                    @Override
+                    public void call(Long i) {
+                        log("sample:" + i);
                     }
-                    subscriber.onNext(i);
-                }
-                subscriber.onCompleted();
+                });
+            }
+        });
+        mRButton.setText("throttleFirst");
+        mRButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                throttleFirstObserver().subscribe(new Action1<Long>() {
+                    @Override
+                    public void call(Long i) {
+                        log("throttleFirst:" + i);
+                    }
+                });
             }
         });
     }
+
+    private Observable<Long> sampleObserver() {
+        return Observable.interval(200, TimeUnit.MILLISECONDS)
+                .sample(1000, TimeUnit.MILLISECONDS);
+    }
+
+    private Observable<Long> throttleFirstObserver() {
+        return Observable.interval(200, TimeUnit.MILLISECONDS)
+                .throttleFirst(1000, TimeUnit.MILLISECONDS);
+    }
+
 
 }
