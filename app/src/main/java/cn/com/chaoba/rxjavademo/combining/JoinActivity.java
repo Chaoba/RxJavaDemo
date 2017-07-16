@@ -1,13 +1,15 @@
 package cn.com.chaoba.rxjavademo.combining;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import java.util.concurrent.TimeUnit;
 
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
-import rx.Subscriber;
-import rx.schedulers.Schedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.functions.Func2;
 
 public class JoinActivity extends BaseActivity {
 
@@ -15,42 +17,92 @@ public class JoinActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("join");
-        mLButton.setOnClickListener(e -> joinObserver().subscribe(i -> log("join:" + i + "\n")));
-        mRButton.setText("groupJoin");
-        mRButton.setOnClickListener(e -> groupJoinObserver().subscribe(i -> i.subscribe(j -> log("groupJoin:" + j + "\n"))));
-    }
-
-    private Observable<String> createObserver() {
-        return Observable.create(new Observable.OnSubscribe<String>() {
-            @Override
-            public void call(Subscriber<? super String> subscriber) {
-                for (int i = 1; i < 5; i++) {
-                    subscriber.onNext("Right-" + i);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+        mLButton.setOnClickListener(e -> {
+            joinObserver().subscribe(new Action1<String>() {
+                @Override
+                public void call(String s) {
+                    log("join:" + s);
                 }
-            }
-        }).subscribeOn(Schedulers.newThread());
+            });
+        });
+        mRButton.setText("groupJoin");
+        mRButton.setOnClickListener(e -> {
+            groupJoinObserver().subscribe(new Action1<Observable<String>>() {
+                @Override
+                public void call(Observable<String> stringObservable) {
+                    stringObservable.first().subscribe(new Action1<String>() {
+                        @Override
+                        public void call(String s) {
+                            log("groupJoin:" + s);
+                        }
+                    });
+                }
+            });
+        });
     }
 
+    @NonNull
+    private Observable<String> getLeftObservable() {
+        return Observable.just("a", "b", "c");
+    }
+
+    @NonNull
+    private Observable<Long> getRightObservable() {
+        return Observable.just(1l, 2l, 3l);
+    }
 
     private Observable<String> joinObserver() {
-        return Observable.just("Left-").join(createObserver(),
-                integer -> Observable.timer(3000, TimeUnit.MILLISECONDS),
-                integer -> Observable.timer(2000, TimeUnit.MILLISECONDS),
-                (i, j) -> i + j
+        return getLeftObservable().join(
+                getRightObservable(),
+                new Func1<String, Observable<Long>>() {
+                    @Override
+                    public Observable<Long> call(String s) {
+                        return Observable.timer(1000, TimeUnit.MILLISECONDS);
+                    }
+                },
+                new Func1<Long, Observable<Long>>() {
+                    @Override
+                    public Observable<Long> call(Long s) {
+                        return Observable.timer(1000, TimeUnit.MILLISECONDS);
+                    }
+                },
+                new Func2<String, Long, String>() {
+                    @Override
+                    public String call(String left, Long right) {
+                        return left + ":" + right;
+                    }
+                }
         );
     }
 
+
     private Observable<Observable<String>> groupJoinObserver() {
-        return Observable.just("Left-")
-                .groupJoin(createObserver(),
-                        s -> Observable.timer(3000, TimeUnit.MILLISECONDS),
-                        s -> Observable.timer(2000, TimeUnit.MILLISECONDS),
-                        (s, stringObservable) -> stringObservable.map(str -> s + str));
+        return getLeftObservable().groupJoin(
+                getRightObservable(),
+                new Func1<String, Observable<Long>>() {
+                    @Override
+                    public Observable<Long> call(String s) {
+                        return Observable.timer(1000, TimeUnit.MILLISECONDS);
+                    }
+                },
+                new Func1<Long, Observable<Long>>() {
+                    @Override
+                    public Observable<Long> call(Long s) {
+                        return Observable.timer(1000, TimeUnit.MILLISECONDS);
+                    }
+                },
+                new Func2<String, Observable<Long>, Observable<String>>() {
+                    @Override
+                    public Observable<String> call(String left, Observable<Long> longObservable) {
+                        return longObservable.map(new Func1<Long, String>() {
+                            @Override
+                            public String call(Long right) {
+                                return left + ":" + right;
+                            }
+                        });
+                    }
+                }
+        );
     }
 
 
