@@ -4,59 +4,69 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
-import rx.Subscriber;
-import rx.schedulers.Schedulers;
+import rx.functions.Action1;
+import rx.functions.Func2;
+import rx.functions.FuncN;
 
 public class CombineLatestActivity extends BaseActivity {
+    List<Observable<Long>> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("combineList");
-        mLButton.setOnClickListener(e -> combineListObserver().subscribe(i -> log("combineList:" + i)));
-        mRButton.setText("CombineLatest");
-        mRButton.setOnClickListener(e -> combineLatestObserver().subscribe(i -> log("CombineLatest:" + i)));
-    }
-
-    private Observable<Integer> createObserver(int index) {
-        return Observable.create(new Observable.OnSubscribe<Integer>() {
-            @Override
-            public void call(Subscriber<? super Integer> subscriber) {
-                for (int i = 1; i < 6; i++) {
-                    subscriber.onNext(i * index);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+        mLButton.setOnClickListener(e -> {
+            list.clear();
+            combineListObserver().subscribe(new Action1<String>() {
+                @Override
+                public void call(String i) {
+                    log("combineList:" + i);
                 }
-            }
-        }).subscribeOn(Schedulers.newThread());
-    }
-
-    private Observable<Integer> combineLatestObserver() {
-        return Observable.combineLatest(createObserver(1), createObserver(2), (num1, num2) -> {
-            log("left:" + num1 + " right:" + num2);
-            return num1 + num2;
+            });
+        });
+        mRButton.setText("CombineLatest");
+        mRButton.setOnClickListener(e -> {
+            combineLatestObserver().subscribe(new Action1<String>() {
+                @Override
+                public void call(String i) {
+                    log("CombineLatest" + i);
+                }
+            });
         });
     }
 
-    List<Observable<Integer>> list = new ArrayList<>();
+    private Observable<Long> createObserver(int index) {
+        return Observable.interval(500 * index, TimeUnit.MILLISECONDS);
+    }
 
-    private Observable<Integer> combineListObserver() {
-        for (int i = 1; i < 5; i++) {
+    private Observable<String> combineLatestObserver() {
+        return Observable.combineLatest(createObserver(1), createObserver(2),
+                new Func2<Long, Long, String>() {
+                    @Override
+                    public String call(Long num1, Long num2) {
+                        return ("left:" + num1 + " right:" + num2);
+                    }
+                });
+    }
+
+
+    private Observable<String> combineListObserver() {
+        for (int i = 1; i < 3; i++) {
             list.add(createObserver(i));
         }
-        return Observable.combineLatest(list, args -> {
-            int temp = 0;
-            for (Object i : args) {
-                log(i);
-                temp += (Integer) i;
+        return Observable.combineLatest(list, new FuncN<String>() {
+            @Override
+            public String call(Object... args) {
+                String temp = "";
+                for (Object i : args) {
+                    temp = temp + ":" + i;
+                }
+                return temp;
             }
-            return temp;
         });
     }
 
