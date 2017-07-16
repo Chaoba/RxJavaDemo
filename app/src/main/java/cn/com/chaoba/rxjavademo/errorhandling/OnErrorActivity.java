@@ -5,6 +5,7 @@ import android.os.Bundle;
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Func1;
 
 public class OnErrorActivity extends BaseActivity {
 
@@ -12,43 +13,52 @@ public class OnErrorActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("onErrorReturn");
-        mLButton.setOnClickListener(e -> onErrorReturnObserver().subscribe(new Subscriber<String>() {
-            @Override
-            public void onCompleted() {
-                log("onErrorReturn-onCompleted\n");
-            }
+        mLButton.setOnClickListener(e -> {
+            onErrorReturnObserver().subscribe(new Subscriber<String>() {
+                @Override
+                public void onCompleted() {
+                    log("onErrorReturn-onCompleted");
+                }
 
-            @Override
-            public void onError(Throwable e) {
-                log("onErrorReturn-onError:" + e.getMessage());
-            }
+                @Override
+                public void onError(Throwable e) {
+                    log("onErrorReturn-onError:" + e.getMessage());
+                }
 
-            @Override
-            public void onNext(String s) {
-                log("onErrorReturn-onNext:" + s);
-            }
-        }));
+                @Override
+                public void onNext(String s) {
+                    log("onErrorReturn-onNext:" + s);
+                }
+            });
+        });
         mRButton.setText("onErrorResume");
-        mRButton.setOnClickListener(e -> onErrorResumeNextObserver().subscribe(new Subscriber<String>() {
-            @Override
-            public void onCompleted() {
-                log("onErrorResume-onCompleted\n");
-            }
+        mRButton.setOnClickListener(e -> {
+            onErrorResumeNextObserver().subscribe(new Subscriber<String>() {
+                @Override
+                public void onCompleted() {
+                    log("onErrorResume-onCompleted");
+                }
 
-            @Override
-            public void onError(Throwable e) {
-                log("onErrorResume-onError:" + e.getMessage());
-            }
+                @Override
+                public void onError(Throwable e) {
+                    log("onErrorResume-onError:" + e.getMessage());
+                }
 
-            @Override
-            public void onNext(String s) {
-                log("onErrorResume-onNext:" + s);
-            }
-        }));
+                @Override
+                public void onNext(String s) {
+                    log("onErrorResume-onNext:" + s);
+                }
+            });
+        });
     }
 
     private Observable<String> onErrorReturnObserver() {
-        return createObserver().onErrorReturn(throwable -> "onErrorReturn");
+        return createObserver().onErrorReturn(new Func1<Throwable, String>() {
+            @Override
+            public String call(Throwable throwable) {
+                return "onErrorReturn";
+            }
+        });
     }
 
     private Observable<String> onErrorResumeNextObserver() {
