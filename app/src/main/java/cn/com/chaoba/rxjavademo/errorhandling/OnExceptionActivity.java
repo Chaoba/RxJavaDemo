@@ -12,43 +12,48 @@ public class OnExceptionActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("onException-true");
-        mLButton.setOnClickListener(e -> onExceptionResumeObserver(true).subscribe(new Subscriber<String>() {
-            @Override
-            public void onCompleted() {
-                log("onException-true-onCompleted\n");
-            }
+        mLButton.setOnClickListener(e -> {
+            onExceptionResumeObserver(true).subscribe(new Subscriber<String>() {
+                @Override
+                public void onCompleted() {
+                    log("onException-true-onCompleted\n");
+                }
 
-            @Override
-            public void onError(Throwable e) {
-                log("onException-true-onError:" + e.getMessage());
-            }
+                @Override
+                public void onError(Throwable e) {
+                    log("onException-true-onError:" + e.getMessage());
+                }
 
-            @Override
-            public void onNext(String s) {
-                log("onException-true-onNext:" + s);
-            }
-        }));
+                @Override
+                public void onNext(String s) {
+                    log("onException-true-onNext:" + s);
+                }
+            });
+        });
         mRButton.setText("onException-false");
-        mRButton.setOnClickListener(e -> onExceptionResumeObserver(false).subscribe(new Subscriber<String>() {
-            @Override
-            public void onCompleted() {
-                log("onException-false-onCompleted\n");
-            }
+        mRButton.setOnClickListener(e -> {
+            onExceptionResumeObserver(false).subscribe(new Subscriber<String>() {
+                @Override
+                public void onCompleted() {
+                    log("onException-false-onCompleted\n");
+                }
 
-            @Override
-            public void onError(Throwable e) {
-                log("onException-false-onError:" + e.getMessage());
-            }
+                @Override
+                public void onError(Throwable e) {
+                    log("onException-false-onError:" + e.getMessage());
+                }
 
-            @Override
-            public void onNext(String s) {
-                log("onException-false-onNext:" + s);
-            }
-        }));
+                @Override
+                public void onNext(String s) {
+                    log("onException-false-onNext:" + s);
+                }
+            });
+        });
     }
 
     private Observable<String> onExceptionResumeObserver(boolean isException) {
-        return createObserver(isException).onExceptionResumeNext(Observable.just("7", "8", "9"));
+        return createObserver(isException)
+                .onExceptionResumeNext(Observable.just("7", "8", "9"));
     }
 
 
