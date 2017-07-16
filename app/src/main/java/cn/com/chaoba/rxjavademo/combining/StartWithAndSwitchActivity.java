@@ -2,10 +2,12 @@ package cn.com.chaoba.rxjavademo.combining;
 
 import android.os.Bundle;
 
+import java.util.concurrent.TimeUnit;
+
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
-import rx.Subscriber;
-import rx.schedulers.Schedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
 
 public class StartWithAndSwitchActivity extends BaseActivity {
 
@@ -13,47 +15,49 @@ public class StartWithAndSwitchActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("StartWith");
-        mLButton.setOnClickListener(e -> startWithObserver().subscribe(i -> log("StartWith:" + i)));
+        mLButton.setOnClickListener(e -> {
+            startWithObserver().subscribe(new Action1<Integer>() {
+                @Override
+                public void call(Integer i) {
+                    log("StartWith:" + i);
+                }
+            });
+        });
         mRButton.setText("switch");
-        mRButton.setOnClickListener(e -> switchObserver().subscribe(i -> log("switch:" + i)));
+        mRButton.setOnClickListener(e -> {
+            switchObserver().subscribe(new Action1<String>() {
+                @Override
+                public void call(String s) {
+                    log("switch:" + s);
+                }
+            });
+        });
     }
 
     private Observable<Integer> startWithObserver() {
         return Observable.just(1, 2, 3).startWith(-1, 0);
     }
 
-    private Observable<String> switchObserver() {
-        return Observable.switchOnNext(Observable.create(
-                new Observable.OnSubscribe<Observable<String>>() {
+    private Observable<String> createObserver(Long index) {
+        return Observable.interval(1000, 1000, TimeUnit.MILLISECONDS).take(5)
+                .map(new Func1<Long, String>() {
                     @Override
-                    public void call(Subscriber<? super Observable<String>> subscriber) {
-                        for (int i = 1; i < 3; i++) {
-                            subscriber.onNext(createObserver(i));
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
+                    public String call(Long aLong) {
+                        return index + "-" + aLong;
                     }
-                }
-        ));
+                });
     }
 
-    private Observable<String> createObserver(int index) {
-        return Observable.create(new Observable.OnSubscribe<String>() {
-            @Override
-            public void call(Subscriber<? super String> subscriber) {
-                for (int i = 1; i < 5; i++) {
-                    subscriber.onNext(index + "-" + i);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+    private Observable<String> switchObserver() {
+        return Observable.switchOnNext(Observable
+                .interval(3000, TimeUnit.MILLISECONDS)
+                .take(3)
+                .map(new Func1<Long, Observable<String>>() {
+                    @Override
+                    public Observable<String> call(Long aLong) {
+                        return createObserver(aLong);
                     }
-                }
-            }
-        }).subscribeOn(Schedulers.newThread());
+                }));
     }
 
 
