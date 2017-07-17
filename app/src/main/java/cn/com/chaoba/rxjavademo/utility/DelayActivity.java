@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 public class DelayActivity extends BaseActivity {
@@ -16,13 +17,23 @@ public class DelayActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("delay");
         mLButton.setOnClickListener(e -> {
-            log("start subscrib:" + getCurrentTime());
-            delayObserver().subscribe(i -> log("delay:" + (getCurrentTime() - i)));
+            log("start subscribe:" + getCurrentTime());
+            delayObserver().subscribe(new Action1<Long>() {
+                @Override
+                public void call(Long i) {
+                    log("delay:" + (getCurrentTime() - i));
+                }
+            });
         });
         mRButton.setText("delaySubscription");
         mRButton.setOnClickListener(e -> {
-            log("start subscrib:" + getCurrentTime());
-            delaySubscriptionObserver().subscribe(i -> log("delaySubscription:" + i));
+            log("start subscribe:" + getCurrentTime());
+            delaySubscriptionObserver().subscribe(new Action1<Long>() {
+                @Override
+                public void call(Long i) {
+                    log("delaySubscription:" + i);
+                }
+            });
         });
     }
 
@@ -31,14 +42,15 @@ public class DelayActivity extends BaseActivity {
     }
 
     private Observable<Long> delaySubscriptionObserver() {
-        return createObserver(2).delaySubscription(2000, TimeUnit.MILLISECONDS);
+        return createObserver(2)
+                .delaySubscription(2000, TimeUnit.MILLISECONDS);
     }
 
     private Observable<Long> createObserver(int index) {
         return Observable.create(new Observable.OnSubscribe<Long>() {
             @Override
             public void call(Subscriber<? super Long> subscriber) {
-                log("subscrib:" + getCurrentTime());
+                log("subscribe:" + getCurrentTime());
                 for (int i = 1; i <= index; i++) {
                     subscriber.onNext(getCurrentTime());
                     try {
@@ -52,7 +64,7 @@ public class DelayActivity extends BaseActivity {
     }
 
     private long getCurrentTime() {
-        return System.currentTimeMillis()/1000;
+        return System.currentTimeMillis() / 1000;
     }
 
 }

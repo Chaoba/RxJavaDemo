@@ -5,6 +5,7 @@ import android.os.Bundle;
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Notification;
 import rx.Observable;
+import rx.functions.Action1;
 
 public class MeterializeActivity extends BaseActivity {
 
@@ -12,9 +13,23 @@ public class MeterializeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("meterialize");
-        mLButton.setOnClickListener(e -> meterializeObserver().subscribe(i -> log("meterialize:" + i.getValue() + " type" + i.getKind())));
+        mLButton.setOnClickListener(e -> {
+            meterializeObserver().subscribe(new Action1<Notification<Integer>>() {
+                @Override
+                public void call(Notification<Integer> i) {
+                    log("meterialize:" + i.getValue() + " type" + i.getKind());
+                }
+            });
+        });
         mRButton.setText("deMeterialize");
-        mRButton.setOnClickListener(e -> deMeterializeObserver().subscribe(i->log("deMeterialize:"+i)));
+        mRButton.setOnClickListener(e -> {
+            deMeterializeObserver().subscribe(new Action1<Integer>() {
+                @Override
+                public void call(Integer i) {
+                    log("deMeterialize:" + i);
+                }
+            });
+        });
     }
 
     private Observable<Notification<Integer>> meterializeObserver() {

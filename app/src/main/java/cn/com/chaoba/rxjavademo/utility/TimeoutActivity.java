@@ -14,31 +14,35 @@ public class TimeoutActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("timeout");
-        mLButton.setOnClickListener(e -> timeoutObserver().subscribe(new Subscriber<Integer>() {
-            @Override
-            public void onCompleted() {
+        mLButton.setOnClickListener(e -> {
+            timeoutObserver().subscribe(new Subscriber<Integer>() {
+                @Override
+                public void onCompleted() {
 
-            }
+                }
 
-            @Override
-            public void onError(Throwable e) {
-                log(e);
-            }
+                @Override
+                public void onError(Throwable e) {
+                    log(e);
+                }
 
-            @Override
-            public void onNext(Integer integer) {
-                log("timeout:" + integer);
-            }
-        }));
+                @Override
+                public void onNext(Integer integer) {
+                    log("timeout:" + integer);
+                }
+            });
+        });
         mRButton.setText("timeoutobserver");
-        mRButton.setOnClickListener(e -> timeoutobserverObserver().subscribe(i -> log(i)));
+        mRButton.setOnClickListener(e -> {
+            timeoutObserverObserver().subscribe(i -> log(i));
+        });
     }
 
     private Observable<Integer> timeoutObserver() {
         return createObserver().timeout(200, TimeUnit.MILLISECONDS);
     }
 
-    private Observable<Integer> timeoutobserverObserver() {
+    private Observable<Integer> timeoutObserverObserver() {
         return createObserver().timeout(200, TimeUnit.MILLISECONDS, Observable.just(5, 6));
     }
 

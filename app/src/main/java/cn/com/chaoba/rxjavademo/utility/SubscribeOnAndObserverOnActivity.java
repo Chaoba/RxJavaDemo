@@ -6,6 +6,7 @@ import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 public class SubscribeOnAndObserverOnActivity extends BaseActivity {
@@ -14,9 +15,23 @@ public class SubscribeOnAndObserverOnActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("observerOn");
-        mLButton.setOnClickListener(e -> observerOnObserver().subscribe(i -> log("observerOn:" + Thread.currentThread().getName())));
+        mLButton.setOnClickListener(e -> {
+            observerOnObserver().subscribe(new Action1<Integer>() {
+                @Override
+                public void call(Integer integer) {
+                    log("observerOn:" + Thread.currentThread().getName());
+                }
+            });
+        });
         mRButton.setText("subscribeOn");
-        mRButton.setOnClickListener(e -> subscribeOnObserver().subscribe(i -> log("subscribeOn:" + Thread.currentThread().getName())));
+        mRButton.setOnClickListener(e -> {
+            subscribeOnObserver().subscribe(new Action1<Integer>() {
+                @Override
+                public void call(Integer integer) {
+                    log("subscribeOn:" + Thread.currentThread().getName());
+                }
+            });
+        });
     }
 
     private Observable<Integer> observerOnObserver() {
