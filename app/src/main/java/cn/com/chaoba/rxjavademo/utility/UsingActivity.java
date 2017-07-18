@@ -16,7 +16,7 @@ public class UsingActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Observable<Long> observable = usingObserver();
+        Observable<Long> observable = usingObservable();
         Subscriber subscriber = new Subscriber() {
             @Override
             public void onCompleted() {
@@ -43,7 +43,7 @@ public class UsingActivity extends BaseActivity {
         });
     }
 
-    private Observable<Long> usingObserver() {
+    private Observable<Long> usingObservable() {
         return Observable.using(new Func0<Animal>() {
             @Override
             public Animal call() {

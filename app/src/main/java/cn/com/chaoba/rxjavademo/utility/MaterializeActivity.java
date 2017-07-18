@@ -7,23 +7,23 @@ import rx.Notification;
 import rx.Observable;
 import rx.functions.Action1;
 
-public class MeterializeActivity extends BaseActivity {
+public class MaterializeActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mLButton.setText("meterialize");
+        mLButton.setText("materialize");
         mLButton.setOnClickListener(e -> {
-            meterializeObserver().subscribe(new Action1<Notification<Integer>>() {
+            materializeObserver().subscribe(new Action1<Notification<Integer>>() {
                 @Override
                 public void call(Notification<Integer> i) {
-                    log("meterialize:" + i.getValue() + " type" + i.getKind());
+                    log("materialize:" + i.getValue() + " type" + i.getKind());
                 }
             });
         });
         mRButton.setText("deMeterialize");
         mRButton.setOnClickListener(e -> {
-            deMeterializeObserver().subscribe(new Action1<Integer>() {
+            deMaterializeObserver().subscribe(new Action1<Integer>() {
                 @Override
                 public void call(Integer i) {
                     log("deMeterialize:" + i);
@@ -32,12 +32,12 @@ public class MeterializeActivity extends BaseActivity {
         });
     }
 
-    private Observable<Notification<Integer>> meterializeObserver() {
+    private Observable<Notification<Integer>> materializeObserver() {
         return Observable.just(1, 2, 3).materialize();
     }
 
-    private Observable<Integer> deMeterializeObserver() {
-        return meterializeObserver().dematerialize();
+    private Observable<Integer> deMaterializeObserver() {
+        return materializeObserver().dematerialize();
     }
 
 }

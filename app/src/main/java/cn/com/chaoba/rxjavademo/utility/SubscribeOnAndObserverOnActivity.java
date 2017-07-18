@@ -50,7 +50,7 @@ public class SubscribeOnAndObserverOnActivity extends BaseActivity {
         return Observable.create(new Observable.OnSubscribe<Integer>() {
             @Override
             public void call(Subscriber<? super Integer> subscriber) {
-                log("on subscrib:" + Thread.currentThread().getName());
+                log("on subscribe:" + Thread.currentThread().getName());
                 subscriber.onNext(1);
                 subscriber.onCompleted();
             }

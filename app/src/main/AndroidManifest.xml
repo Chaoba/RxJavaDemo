@@ -288,7 +288,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".utility.MeterializeActivity"
+            android:name=".utility.MaterializeActivity"
             android:label="@string/title_activity_meterialize"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

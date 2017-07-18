@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Action1;
 
 public class TimeoutActivity extends BaseActivity {
 
@@ -34,7 +35,12 @@ public class TimeoutActivity extends BaseActivity {
         });
         mRButton.setText("timeoutobserver");
         mRButton.setOnClickListener(e -> {
-            timeoutObserverObserver().subscribe(i -> log(i));
+            timeoutobserverObserver().subscribe(new Action1<Integer>() {
+                @Override
+                public void call(Integer integer) {
+                    log(integer);
+                }
+            });
         });
     }
 
@@ -42,8 +48,9 @@ public class TimeoutActivity extends BaseActivity {
         return createObserver().timeout(200, TimeUnit.MILLISECONDS);
     }
 
-    private Observable<Integer> timeoutObserverObserver() {
-        return createObserver().timeout(200, TimeUnit.MILLISECONDS, Observable.just(5, 6));
+    private Observable<Integer> timeoutobserverObserver() {
+        return createObserver()
+                .timeout(200, TimeUnit.MILLISECONDS, Observable.just(5, 6));
     }
 
     private Observable<Integer> createObserver() {

@@ -31,7 +31,7 @@ public class DelayActivity extends BaseActivity {
             delaySubscriptionObserver().subscribe(new Action1<Long>() {
                 @Override
                 public void call(Long i) {
-                    log("delaySubscription:" + i);
+                    log("delaySubscription:" + getCurrentTime());
                 }
             });
         });
@@ -53,11 +53,6 @@ public class DelayActivity extends BaseActivity {
                 log("subscribe:" + getCurrentTime());
                 for (int i = 1; i <= index; i++) {
                     subscriber.onNext(getCurrentTime());
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                 }
             }
         }).subscribeOn(Schedulers.newThread());
