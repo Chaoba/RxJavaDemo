@@ -6,6 +6,10 @@ import java.util.ArrayList;
 
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
+import rx.functions.Action1;
+import rx.functions.Action2;
+import rx.functions.Func0;
+import rx.functions.Func2;
 
 public class Reducectivity extends BaseActivity {
     ArrayList<Integer> list = new ArrayList<>();
@@ -17,16 +21,47 @@ public class Reducectivity extends BaseActivity {
             list.add(2);
         }
         mLButton.setText("reduce");
-        mLButton.setOnClickListener(e -> reduceObserver().subscribe(i -> log("reduce:" + i)));
+        mLButton.setOnClickListener(e -> {
+            reduceObserver().subscribe(new Action1<Integer>() {
+                @Override
+                public void call(Integer i) {
+                    log("reduce:" + i);
+                }
+            });
+        });
         mRButton.setText("collect");
-        mRButton.setOnClickListener(e -> collectObserver().subscribe(i -> log("collect:" + i)));
+        mRButton.setOnClickListener(e -> {
+            collectObserver().subscribe(new Action1<ArrayList<Integer>>() {
+                @Override
+                public void call(ArrayList<Integer> integers) {
+                    log("collect:" + integers);
+                }
+            });
+        });
     }
 
     private Observable<Integer> reduceObserver() {
-        return Observable.from(list).reduce((x, y) -> x * y);
+        return Observable.from(list).reduce((new Func2<Integer, Integer, Integer>() {
+            @Override
+            public Integer call(Integer x, Integer y) {
+                return x * y;
+            }
+        }));
     }
+
     private Observable<ArrayList<Integer>> collectObserver() {
-         return Observable.from(list).collect(() -> new ArrayList<>(), (integers, integer) -> integers.add(integer));
+        return Observable.from(list).collect(
+                new Func0<ArrayList<Integer>>() {
+                    @Override
+                    public ArrayList<Integer> call() {
+                        return new ArrayList<>();
+                    }
+                }, new Action2<ArrayList<Integer>, Integer>() {
+                    @Override
+                    public void call(ArrayList<Integer> integers, Integer integer) {
+                        integers.add(integer);
+                    }
+                });
     }
 
 }

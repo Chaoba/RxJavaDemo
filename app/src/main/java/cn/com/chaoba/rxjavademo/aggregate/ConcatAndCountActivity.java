@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
+import rx.functions.Action1;
 
 
 public class ConcatAndCountActivity extends BaseActivity {
@@ -12,9 +13,23 @@ public class ConcatAndCountActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("concat");
-        mLButton.setOnClickListener(e -> concatObserver().subscribe(i -> log("concat:" + i)));
+        mLButton.setOnClickListener(e -> {
+            concatObserver().subscribe(new Action1<Integer>() {
+                @Override
+                public void call(Integer i) {
+                    log("concat:" + i);
+                }
+            });
+        });
         mRButton.setText("count");
-        mRButton.setOnClickListener(e -> countObserver().subscribe(i -> log("count:" + i)));
+        mRButton.setOnClickListener(e -> {
+            countObserver().subscribe(new Action1<Integer>() {
+                @Override
+                public void call(Integer i) {
+                    log("count:" + i);
+                }
+            });
+        });
     }
 
     private Observable<Integer> concatObserver() {
@@ -23,6 +38,7 @@ public class ConcatAndCountActivity extends BaseActivity {
         Observable<Integer> obser3 = Observable.just(7, 8, 9);
         return Observable.concat(obser1, obser2, obser3);
     }
+
     private Observable<Integer> countObserver() {
         return Observable.just(1, 2, 3).count();
     }
