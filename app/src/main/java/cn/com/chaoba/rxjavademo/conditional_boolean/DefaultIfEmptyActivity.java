@@ -5,6 +5,7 @@ import android.os.Bundle;
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Action1;
 
 public class DefaultIfEmptyActivity extends BaseActivity {
 
@@ -12,9 +13,23 @@ public class DefaultIfEmptyActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("empty");
-        mLButton.setOnClickListener(e -> emptyObserver().subscribe(i -> log("empty:" + i)));
+        mLButton.setOnClickListener(e -> {
+            emptyObserver().subscribe(new Action1<Integer>() {
+                @Override
+                public void call(Integer i) {
+                    log("empty:" + i);
+                }
+            });
+        });
         mRButton.setText("notEmpty");
-        mRButton.setOnClickListener(e -> notEmptyObserver().subscribe(i -> log("notEmpty:" + i)));
+        mRButton.setOnClickListener(e -> {
+            notEmptyObserver().subscribe(new Action1<Integer>() {
+                @Override
+                public void call(Integer i) {
+                    log("notEmpty:" + i);
+                }
+            });
+        });
     }
 
     private Observable<Integer> emptyObserver() {
@@ -27,13 +42,7 @@ public class DefaultIfEmptyActivity extends BaseActivity {
     }
 
     private Observable<Integer> notEmptyObserver() {
-        return Observable.create(new Observable.OnSubscribe<Integer>() {
-            @Override
-            public void call(Subscriber<? super Integer> subscriber) {
-                subscriber.onNext(1);
-                subscriber.onCompleted();
-            }
-        }).defaultIfEmpty(10);
+        return Observable.just(1).defaultIfEmpty(10);
     }
 }
 

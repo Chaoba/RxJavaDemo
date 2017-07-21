@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
+import rx.functions.Action1;
 
 public class SkipUntilSkipWhileActivity extends BaseActivity {
 
@@ -13,17 +14,33 @@ public class SkipUntilSkipWhileActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("skipUntil");
-        mLButton.setOnClickListener(e -> skipUntilObserver().subscribe(i -> log("skipUntil:" + i)));
+        mLButton.setOnClickListener(e -> {
+            skipUntilObserver().subscribe(new Action1<Long>() {
+                @Override
+                public void call(Long i) {
+                    log("skipUntil:" + i);
+                }
+            });
+        });
         mRButton.setText("skipWhile");
-        mRButton.setOnClickListener(e -> skipWhileObserver().subscribe(i -> log("skipWhile:" + i)));
+        mRButton.setOnClickListener(e -> {
+            skipWhileObserver().subscribe(new Action1<Long>() {
+                @Override
+                public void call(Long i) {
+                    log("skipWhile:" + i);
+                }
+            });
+        });
     }
 
     private Observable<Long> skipUntilObserver() {
-        return Observable.interval(1, TimeUnit.SECONDS).skipUntil(Observable.timer(3, TimeUnit.SECONDS));
+        return Observable.interval(1, TimeUnit.SECONDS)
+                .skipUntil(Observable.timer(3, TimeUnit.SECONDS));
     }
 
     private Observable<Long> skipWhileObserver() {
-        return Observable.interval(1, TimeUnit.SECONDS).skipWhile(aLong -> aLong < 5);
+        return Observable.interval(1, TimeUnit.SECONDS)
+                .skipWhile(aLong -> aLong < 5);
     }
 }
 

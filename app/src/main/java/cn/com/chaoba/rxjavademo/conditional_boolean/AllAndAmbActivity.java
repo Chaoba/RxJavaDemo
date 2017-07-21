@@ -6,6 +6,8 @@ import java.util.concurrent.TimeUnit;
 
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
+import rx.functions.Action1;
+import rx.functions.Func1;
 
 public class AllAndAmbActivity extends BaseActivity {
     boolean tag;
@@ -14,20 +16,51 @@ public class AllAndAmbActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLButton.setText("all");
-        mLButton.setOnClickListener(e -> allObserver().subscribe(i -> log("all:" + i)));
+        mLButton.setOnClickListener(e -> {
+            allObserver().subscribe(new Action1<Boolean>() {
+                @Override
+                public void call(Boolean aBoolean) {
+                    log("all:" + aBoolean);
+                }
+            });
+            notAllObserver().subscribe(new Action1<Boolean>() {
+                @Override
+                public void call(Boolean aBoolean) {
+                    log("not all:" + aBoolean);
+                }
+            });
+        });
         mRButton.setText("amb");
-        mRButton.setOnClickListener(e -> ambObserver().subscribe(i -> log("amb:" + i)));
+        mRButton.setOnClickListener(e -> {
+            ambObserver().subscribe(new Action1<Integer>() {
+                @Override
+                public void call(Integer i) {
+                    log("amb:" + i);
+                }
+            });
+        });
     }
 
     private Observable<Boolean> allObserver() {
         Observable<Integer> just;
-        if (tag) {
-            just = Observable.just(1, 2, 3, 4, 5);
-        } else {
-            just = Observable.just(1, 2, 3, 4, 5, 6);
-        }
-        tag = true;
-        return just.all(integer -> integer < 6);
+        just = Observable.just(1, 2, 3, 4, 5);
+        return just.all(new Func1<Integer, Boolean>() {
+            @Override
+            public Boolean call(Integer integer) {
+                return integer < 6;
+            }
+        });
+    }
+
+    private Observable<Boolean> notAllObserver() {
+        Observable<Integer> just;
+        just = Observable.just(1, 2, 3, 4, 5, 6);
+        return just.all(new Func1<Integer, Boolean>() {
+            @Override
+            public Boolean call(Integer integer) {
+                return integer < 6;
+            }
+        });
     }
 
     private Observable<Integer> ambObserver() {
