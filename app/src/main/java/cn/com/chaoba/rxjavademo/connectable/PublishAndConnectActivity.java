@@ -18,15 +18,25 @@ public class PublishAndConnectActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ConnectableObservable<Long> obs = publishObserver();
-        Action1 action2 = o -> log("action2:" + o);
-        Action1 action1 = o -> {
-            log("action1:" + o);
-            if ((long) o == 3) obs.subscribe(action2);
+        Action1 action2 = new Action1() {
+            @Override
+            public void call(Object o) {
+                log("action2:" + o);
+            }
+        };
+        Action1 action1 = new Action1() {
+            @Override
+            public void call(Object o) {
+                log("action1:" + o);
+                if ((long) o == 3) obs.subscribe(action2);
+            }
         };
         obs.subscribe(action1);
 
         mLButton.setText("start");
-        mLButton.setOnClickListener(e -> mSubscription = obs.connect());
+        mLButton.setOnClickListener(e -> {
+            mSubscription = obs.connect();
+        });
         mRButton.setText("stop");
         mRButton.setOnClickListener(e -> {
             if (mSubscription != null) {

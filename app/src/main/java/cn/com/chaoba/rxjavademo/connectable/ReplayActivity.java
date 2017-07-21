@@ -19,10 +19,18 @@ public class ReplayActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Action1 action2 = o -> log("action2:" + o);
-        Action1 action1 = o -> {
-            log("action1:" + o);
-            if ((long) o == 5) obs.subscribe(action2);
+        Action1 action2 = new Action1() {
+            @Override
+            public void call(Object o) {
+                log("action2:" + o);
+            }
+        };
+        Action1 action1 = new Action1() {
+            @Override
+            public void call(Object o) {
+                log("action1:" + o);
+                if ((long) o == 5) obs.subscribe(action2);
+            }
         };
 
 
