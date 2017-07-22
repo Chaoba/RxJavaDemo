@@ -42,8 +42,7 @@ public class AllAndAmbActivity extends BaseActivity {
     }
 
     private Observable<Boolean> allObserver() {
-        Observable<Integer> just;
-        just = Observable.just(1, 2, 3, 4, 5);
+        Observable<Integer> just = Observable.just(1, 2, 3, 4, 5);
         return just.all(new Func1<Integer, Boolean>() {
             @Override
             public Boolean call(Integer integer) {
@@ -53,8 +52,7 @@ public class AllAndAmbActivity extends BaseActivity {
     }
 
     private Observable<Boolean> notAllObserver() {
-        Observable<Integer> just;
-        just = Observable.just(1, 2, 3, 4, 5, 6);
+        Observable<Integer> just = Observable.just(1, 2, 3, 4, 5, 6);
         return just.all(new Func1<Integer, Boolean>() {
             @Override
             public Boolean call(Integer integer) {
@@ -64,9 +62,12 @@ public class AllAndAmbActivity extends BaseActivity {
     }
 
     private Observable<Integer> ambObserver() {
-        Observable<Integer> delay3 = Observable.just(1, 2, 3).delay(3000, TimeUnit.MILLISECONDS);
-        Observable<Integer> delay2 = Observable.just(4, 5, 6).delay(2000, TimeUnit.MILLISECONDS);
-        Observable<Integer> delay1 = Observable.just(7, 8, 9).delay(1000, TimeUnit.MILLISECONDS);
+        Observable<Integer> delay3 = Observable.just(1, 2, 3)
+                .delay(3000, TimeUnit.MILLISECONDS);
+        Observable<Integer> delay2 = Observable.just(4, 5, 6)
+                .delay(2000, TimeUnit.MILLISECONDS);
+        Observable<Integer> delay1 = Observable.just(7, 8, 9)
+                .delay(1000, TimeUnit.MILLISECONDS);
         return Observable.amb(delay1, delay2, delay3);
     }
 }

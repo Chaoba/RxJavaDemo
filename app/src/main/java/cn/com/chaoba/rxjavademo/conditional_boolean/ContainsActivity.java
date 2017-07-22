@@ -29,7 +29,7 @@ public class ContainsActivity extends BaseActivity {
         });
         mRButton.setText("isEmpty");
         mRButton.setOnClickListener(e -> {
-            defaultObserver().subscribe(new Action1<Boolean>() {
+            emptyObserver().subscribe(new Action1<Boolean>() {
                 @Override
                 public void call(Boolean i) {
                     log("isEmpty:" + i);
@@ -46,7 +46,7 @@ public class ContainsActivity extends BaseActivity {
         return Observable.just(1, 2, 3).contains(4);
     }
 
-    private Observable<Boolean> defaultObserver() {
+    private Observable<Boolean> emptyObserver() {
         return Observable.create(new Observable.OnSubscribe<Integer>() {
             @Override
             public void call(Subscriber<? super Integer> subscriber) {

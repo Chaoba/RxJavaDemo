@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Observable;
 import rx.functions.Action1;
+import rx.functions.Func1;
 
 public class TakeUntilTakeWhileActivity extends BaseActivity {
 
@@ -40,7 +41,12 @@ public class TakeUntilTakeWhileActivity extends BaseActivity {
 
     private Observable<Long> takeWhileObserver() {
         return Observable.interval(1, TimeUnit.SECONDS)
-                .takeWhile(aLong -> aLong < 5);
+                .takeWhile(new Func1<Long, Boolean>() {
+                    @Override
+                    public Boolean call(Long aLong) {
+                        return aLong < 5;
+                    }
+                });
     }
 }
 
