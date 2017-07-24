@@ -29,7 +29,7 @@ public class ReplayActivity extends BaseActivity {
             @Override
             public void call(Object o) {
                 log("action1:" + o);
-                if ((long) o == 5) obs.subscribe(action2);
+                if ((long) o == 3) obs.subscribe(action2);
             }
         };
 
