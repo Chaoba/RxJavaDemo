@@ -10,7 +10,7 @@ import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
-public class SubscribeOnAndObserverOnActivity extends BaseActivity {
+public class SubscribeOnAndObserveOnActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -448,8 +448,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".scheduler.SubscribeOnAndObserverOnActivity"
+            android:name=".scheduler.SubscribeOnAndObserveOnActivity"
             android:label="@string/title_activity_subon"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="cn.com.chaoba.rxjavademo.category" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".scheduler.FromExecutorActivity"
+            android:label="@string/from_executor"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

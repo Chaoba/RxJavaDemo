@@ -29,7 +29,7 @@
     <string name="title_activity_delay">DelayActivity</string>
     <string name="title_activity_do">MeterializeActivity</string>
     <string name="title_activity_meterialize">MeterializeActivity</string>
-    <string name="title_activity_subon">SubscribeOnAndObserverOnActivity</string>
+    <string name="title_activity_subon">SubscribeOnAndObserveOnActivity</string>
     <string name="title_activity_time">TimeIntervalTimeStampActivity</string>
     <string name="title_activity_timeout">TimeoutActivity</string>
     <string name="title_activity_using">UsingActivity</string>
@@ -45,5 +45,6 @@
     <string name="title_activity_refcount">RefCountActivity</string>
     <string name="title_activity_replay">ReplayActivity</string>
     <string name="title_activity_custom">CustomActivity</string>
+    <string name="from_executor">FromExecutorActivity</string>
 
 </resources>
