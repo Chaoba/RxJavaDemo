@@ -29,12 +29,17 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.0.0'
+    compile(name:'rxandroid-1.2.1', ext:'aar')
 //    compile 'io.reactivex:rxjava:1.2.2'
-    compile('io.reactivex:rxandroid:1.2.1')
+//    compile('io.reactivex:rxandroid:1.2.1')
 //            {
 //        exclude module: 'rxjava'
 //    }
