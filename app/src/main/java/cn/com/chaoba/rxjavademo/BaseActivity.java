@@ -6,8 +6,8 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class BaseActivity extends AppCompatActivity {
 
