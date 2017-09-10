@@ -4,21 +4,5 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_base">BaseActivity</string>
-    <string name="title_activity_create">CreateAndRangeActivity</string>
-    <string name="title_activity_defer">DeferActivity</string>
-    <string name="title_activity_from">FromActivity</string>
-    <string name="title_activity_interval">IntervalActivity</string>
-    <string name="title_activity_repeat">RepeatActivity</string>
-    <string name="title_activity_buffer">BufferActivity</string>
-    <string name="title_activity_flat_map">FlatMapActivity</string>
-    <string name="title_activity_groupby">GroupbyActivity</string>
-    <string name="title_activity_map">MapActivity</string>
-    <string name="title_activity_scan">ScanActivity</string>
-    <string name="title_activity_window">WindowActivity</string>
-    <string name="title_activity_debounce">DebounceActivity</string>
-    <string name="title_activity_distinct">DistinctActivity</string>
-    <string name="title_activity_element_at_and_first">ElementAtAndFirstActivity</string>
-    <string name="title_activity_fitst">FitstActivity</string>
-    <string name="title_activity_skip_and_take">SkipAndTakeActivity</string>
-    <string name="title_activity_sample">SampleActivity</string>
+    <string name="title_activity_Flowable">FlowableActivity</string>
 </resources>
