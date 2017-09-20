@@ -26,7 +26,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void log(Object s) {
-        Log.d(TAG, String.valueOf(s));
+        Log.i(TAG, String.valueOf(s));
         Observable.just(s).observeOn(AndroidSchedulers.mainThread()).subscribe(i -> {
             mResultView.setText(mResultView.getText() + "\n" + i);
         });
