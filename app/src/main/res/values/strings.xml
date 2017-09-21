@@ -7,4 +7,5 @@
     <string name="title_activity_Flowable">FlowableActivity</string>
     <string name="title_activity_Null">NullActivity</string>
     <string name="title_activity_single">SingleActivity</string>
+    <string name="title_activity_maybe">MaybeActivity</string>
 </resources>

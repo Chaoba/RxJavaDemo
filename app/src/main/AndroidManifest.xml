@@ -42,6 +42,14 @@
                 <category android:name="cn.com.chaoba.rxjavademo.category"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".creatingobserver.MaybeActivity"
+            android:label="@string/title_activity_single">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="cn.com.chaoba.rxjavademo.category"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
