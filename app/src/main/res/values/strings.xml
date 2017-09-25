@@ -8,4 +8,7 @@
     <string name="title_activity_Null">NullActivity</string>
     <string name="title_activity_single">SingleActivity</string>
     <string name="title_activity_maybe">MaybeActivity</string>
+    <string name="title_activity_resource_subscriber">ResourceSubscriberActivity</string>
+    <string name="title_activity_default_subscriber">DefaultSubscriberActivity</string>
+    <string name="title_activity_disposable_subscriber">DisposableSubscriberActivity</string>
 </resources>

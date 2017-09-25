@@ -50,6 +50,30 @@
                 <category android:name="cn.com.chaoba.rxjavademo.category"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".subscriber.ResourceSubscriberActivity"
+            android:label="@string/title_activity_resource_subscriber">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="cn.com.chaoba.rxjavademo.category"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".subscriber.DefaultSubscriberActivity"
+            android:label="@string/title_activity_default_subscriber">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="cn.com.chaoba.rxjavademo.category"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".subscriber.DisposableSubscriberActivity"
+            android:label="@string/title_activity_disposable_subscriber">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="cn.com.chaoba.rxjavademo.category"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
