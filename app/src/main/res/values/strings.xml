@@ -11,4 +11,5 @@
     <string name="title_activity_resource_subscriber">ResourceSubscriberActivity</string>
     <string name="title_activity_default_subscriber">DefaultSubscriberActivity</string>
     <string name="title_activity_disposable_subscriber">DisposableSubscriberActivity</string>
+    <string name="title_activity_consumer">ConsumerActivity</string>
 </resources>
