@@ -13,4 +13,5 @@
     <string name="title_activity_disposable_subscriber">DisposableSubscriberActivity</string>
     <string name="title_activity_consumer">ConsumerActivity</string>
     <string name="title_activity_function">FunctionActivity</string>
+    <string name="title_activity_error_handle">ErrorHandleActivity</string>
 </resources>

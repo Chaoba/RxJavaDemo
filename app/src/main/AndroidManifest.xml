@@ -90,6 +90,14 @@
                 <category android:name="cn.com.chaoba.rxjavademo.category"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".plugin.OnErrorActivity"
+            android:label="@string/title_activity_error_handle">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="cn.com.chaoba.rxjavademo.category"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
