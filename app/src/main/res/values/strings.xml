@@ -14,4 +14,5 @@
     <string name="title_activity_consumer">ConsumerActivity</string>
     <string name="title_activity_function">FunctionActivity</string>
     <string name="title_activity_error_handle">ErrorHandleActivity</string>
+    <string name="title_activity_single_scheduler">SingleSchedulerActivity</string>
 </resources>

@@ -98,6 +98,14 @@
                 <category android:name="cn.com.chaoba.rxjavademo.category"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".scheduler.SingleSchedulerActivity"
+            android:label="@string/title_activity_single_scheduler">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="cn.com.chaoba.rxjavademo.category"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
