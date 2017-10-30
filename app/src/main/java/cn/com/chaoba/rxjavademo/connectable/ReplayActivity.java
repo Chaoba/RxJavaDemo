@@ -29,7 +29,7 @@ public class ReplayActivity extends BaseActivity {
             @Override
             public void call(Object o) {
                 log("action1:" + o);
-                if ((long) o == 3) obs.subscribe(action2);
+                if ((long) o == 3) obs.compose(bindToLifecycle()).subscribe(action2);
             }
         };
 
@@ -37,14 +37,14 @@ public class ReplayActivity extends BaseActivity {
         mLButton.setText("relayCount");
         mLButton.setOnClickListener(e -> {
             obs = relayCountObserver();
-            obs.subscribe(action1);
+            obs.compose(bindToLifecycle()).subscribe(action1);
             log("relayCount");
             mSubscription = obs.connect();
         });
         mRButton.setText("relayTime");
         mRButton.setOnClickListener(e -> {
             obs = relayTimeObserver();
-            obs.subscribe(action1);
+            obs.compose(bindToLifecycle()).subscribe(action1);
             log("relayTime");
             mSubscription = obs.connect();
         });

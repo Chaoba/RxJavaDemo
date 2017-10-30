@@ -35,6 +35,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.0.0'
 //    compile 'io.reactivex:rxjava:1.2.2'
     compile('io.reactivex:rxandroid:1.2.1')
+    compile 'com.trello:rxlifecycle-components:1.0'
 //            {
 //        exclude module: 'rxjava'
 //    }

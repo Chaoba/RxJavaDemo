@@ -21,7 +21,7 @@ public class RefCountActivity extends BaseActivity {
 
         mLButton.setText("refCount");
         mLButton.setOnClickListener(e -> {
-            subscription = obs.refCount().subscribe(new Action1<Long>() {
+            subscription = obs.refCount().compose(bindToLifecycle()).subscribe(new Action1<Long>() {
                 @Override
                 public void call(Long aLong) {
                     log("refCount:" + aLong);

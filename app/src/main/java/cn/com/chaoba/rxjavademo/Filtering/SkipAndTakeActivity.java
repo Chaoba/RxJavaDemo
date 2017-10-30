@@ -16,7 +16,7 @@ public class SkipAndTakeActivity extends BaseActivity {
         mLButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                skipObserver().subscribe(new Action1<Integer>() {
+                skipObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer i) {
                         log("Skip:" + i);
@@ -28,7 +28,7 @@ public class SkipAndTakeActivity extends BaseActivity {
         mRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                takeObserver().subscribe(new Action1<Integer>() {
+                takeObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer i) {
                         log("Take:" + i);

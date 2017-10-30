@@ -14,13 +14,13 @@ public class ContainsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("contains");
         mLButton.setOnClickListener(e -> {
-            containsObserver().subscribe(new Action1<Boolean>() {
+            containsObserver().compose(bindToLifecycle()).subscribe(new Action1<Boolean>() {
                 @Override
                 public void call(Boolean i) {
                     log("contains:" + i);
                 }
             });
-            notContainsObserver().subscribe(new Action1<Boolean>() {
+            notContainsObserver().compose(bindToLifecycle()).subscribe(new Action1<Boolean>() {
                 @Override
                 public void call(Boolean i) {
                     log("not contains:" + i);
@@ -29,7 +29,7 @@ public class ContainsActivity extends BaseActivity {
         });
         mRButton.setText("isEmpty");
         mRButton.setOnClickListener(e -> {
-            emptyObserver().subscribe(new Action1<Boolean>() {
+            emptyObserver().compose(bindToLifecycle()).subscribe(new Action1<Boolean>() {
                 @Override
                 public void call(Boolean i) {
                     log("isEmpty:" + i);

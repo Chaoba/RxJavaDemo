@@ -15,7 +15,7 @@ public class SkipUntilSkipWhileActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("skipUntil");
         mLButton.setOnClickListener(e -> {
-            skipUntilObserver().subscribe(new Action1<Long>() {
+            skipUntilObserver().compose(bindToLifecycle()).subscribe(new Action1<Long>() {
                 @Override
                 public void call(Long i) {
                     log("skipUntil:" + i);
@@ -24,7 +24,7 @@ public class SkipUntilSkipWhileActivity extends BaseActivity {
         });
         mRButton.setText("skipWhile");
         mRButton.setOnClickListener(e -> {
-            skipWhileObserver().subscribe(new Action1<Long>() {
+            skipWhileObserver().compose(bindToLifecycle()).subscribe(new Action1<Long>() {
                 @Override
                 public void call(Long i) {
                     log("skipWhile:" + i);

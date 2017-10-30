@@ -20,7 +20,7 @@ public class FlatMapActivity extends BaseActivity {
         mLButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flatMapObserver().subscribe(new Action1<String>() {
+                flatMapObserver().compose(bindToLifecycle()).subscribe(new Action1<String>() {
                     @Override
                     public void call(String s) {
                         log(s);
@@ -32,7 +32,7 @@ public class FlatMapActivity extends BaseActivity {
         mRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flatMapIterableObserver().subscribe(new Action1<String>() {
+                flatMapIterableObserver().compose(bindToLifecycle()).subscribe(new Action1<String>() {
                     @Override
                     public void call(String s) {
                         log(s);

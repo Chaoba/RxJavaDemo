@@ -18,7 +18,7 @@ public class JoinActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("join");
         mLButton.setOnClickListener(e -> {
-            joinObserver().subscribe(new Action1<String>() {
+            joinObserver().compose(bindToLifecycle()).subscribe(new Action1<String>() {
                 @Override
                 public void call(String s) {
                     log("join:" + s);
@@ -27,10 +27,10 @@ public class JoinActivity extends BaseActivity {
         });
         mRButton.setText("groupJoin");
         mRButton.setOnClickListener(e -> {
-            groupJoinObserver().subscribe(new Action1<Observable<String>>() {
+            groupJoinObserver().compose(bindToLifecycle()).subscribe(new Action1<Observable<String>>() {
                 @Override
                 public void call(Observable<String> stringObservable) {
-                    stringObservable.first().subscribe(new Action1<String>() {
+                    stringObservable.first().compose(bindToLifecycle()).subscribe(new Action1<String>() {
                         @Override
                         public void call(String s) {
                             log("groupJoin:" + s);

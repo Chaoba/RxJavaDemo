@@ -16,7 +16,7 @@ public class DoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("do");
         mLButton.setOnClickListener(e -> {
-            doOnEachObserver().subscribe(new Action1<Integer>() {
+            doOnEachObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                 @Override
                 public void call(Integer i) {
                     log("do:" + i);
@@ -25,7 +25,7 @@ public class DoActivity extends BaseActivity {
         });
         mRButton.setText("doOnError");
         mRButton.setOnClickListener(e -> {
-            doOnErrorObserver().subscribe(new Subscriber<Integer>() {
+            doOnErrorObserver().compose(bindToLifecycle()).subscribe(new Subscriber<Integer>() {
                 @Override
                 public void onCompleted() {
                     log("onCompleted");

@@ -35,7 +35,7 @@ public class IntervalActivity extends BaseActivity {
         };
         mLButton.setText("Interval");
         mRButton.setText("UnSubsCribe");
-        mLButton.setOnClickListener(e -> observable.subscribe(subscriber));
+        mLButton.setOnClickListener(e -> observable.compose(bindToLifecycle()).subscribe(subscriber));
         mRButton.setOnClickListener(e -> subscriber.unsubscribe());
     }
 

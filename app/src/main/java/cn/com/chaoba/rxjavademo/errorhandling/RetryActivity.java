@@ -17,7 +17,7 @@ public class RetryActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("retry");
         mLButton.setOnClickListener(e -> {
-            retryObserver().subscribe(new Subscriber<Integer>() {
+            retryObserver().compose(bindToLifecycle()).subscribe(new Subscriber<Integer>() {
                 @Override
                 public void onCompleted() {
                     log("retry-onCompleted");
@@ -36,7 +36,7 @@ public class RetryActivity extends BaseActivity {
         });
         mRButton.setText("retryWhen");
         mRButton.setOnClickListener(e -> {
-            retryWhenObserver().subscribe(new Subscriber<Integer>() {
+            retryWhenObserver().compose(bindToLifecycle()).subscribe(new Subscriber<Integer>() {
                 @Override
                 public void onCompleted() {
                     log("retryWhen-onCompleted");

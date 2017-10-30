@@ -14,7 +14,7 @@ public class DefaultIfEmptyActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("empty");
         mLButton.setOnClickListener(e -> {
-            emptyObserver().subscribe(new Action1<Integer>() {
+            emptyObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                 @Override
                 public void call(Integer i) {
                     log("empty:" + i);
@@ -23,7 +23,7 @@ public class DefaultIfEmptyActivity extends BaseActivity {
         });
         mRButton.setText("notEmpty");
         mRButton.setOnClickListener(e -> {
-            notEmptyObserver().subscribe(new Action1<Integer>() {
+            notEmptyObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                 @Override
                 public void call(Integer i) {
                     log("notEmpty:" + i);

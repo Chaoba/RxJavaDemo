@@ -16,7 +16,7 @@ public class StartWithAndSwitchActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("StartWith");
         mLButton.setOnClickListener(e -> {
-            startWithObserver().subscribe(new Action1<Integer>() {
+            startWithObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                 @Override
                 public void call(Integer i) {
                     log("StartWith:" + i);
@@ -25,7 +25,7 @@ public class StartWithAndSwitchActivity extends BaseActivity {
         });
         mRButton.setText("switch");
         mRButton.setOnClickListener(e -> {
-            switchObserver().subscribe(new Action1<String>() {
+            switchObserver().compose(bindToLifecycle()).subscribe(new Action1<String>() {
                 @Override
                 public void call(String s) {
                     log("switch:" + s);

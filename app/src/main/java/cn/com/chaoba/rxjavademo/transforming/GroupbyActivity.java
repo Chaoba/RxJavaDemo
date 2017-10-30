@@ -18,10 +18,10 @@ public class GroupbyActivity extends BaseActivity {
         mLButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                groupByObserver().subscribe(new Action1<GroupedObservable<Integer, Integer>>() {
+                groupByObserver().compose(bindToLifecycle()).subscribe(new Action1<GroupedObservable<Integer, Integer>>() {
                     @Override
                     public void call(GroupedObservable<Integer, Integer> groupedObservable) {
-                        groupedObservable.count().subscribe(new Action1<Integer>() {
+                        groupedObservable.count().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                             @Override
                             public void call(Integer integer) {
                                 log("key" + groupedObservable.getKey()
@@ -36,11 +36,11 @@ public class GroupbyActivity extends BaseActivity {
         mRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                groupByStringObserver().subscribe(new Action1<GroupedObservable<Integer, String>>() {
+                groupByStringObserver().compose(bindToLifecycle()).subscribe(new Action1<GroupedObservable<Integer, String>>() {
                     @Override
                     public void call(GroupedObservable<Integer, String> groupedObservable) {
                         if (groupedObservable.getKey() == 0) {
-                            groupedObservable.subscribe(new Action1<String>() {
+                            groupedObservable.compose(bindToLifecycle()).subscribe(new Action1<String>() {
                                 @Override
                                 public void call(String s) {
                                     log(s);

@@ -16,7 +16,7 @@ public class DistinctActivity extends BaseActivity {
         mLButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                distinctObserver().subscribe(new Action1<Integer>() {
+                distinctObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer i) {
                         log("distinct:" + i);
@@ -28,7 +28,7 @@ public class DistinctActivity extends BaseActivity {
         mRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                distinctUntilChangedObserver().subscribe(new Action1<Integer>() {
+                distinctUntilChangedObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer i) {
                         log("UntilChanged:" + i);

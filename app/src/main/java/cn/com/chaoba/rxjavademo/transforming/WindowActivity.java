@@ -19,11 +19,11 @@ public class WindowActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 windowCountObserver()
-                        .subscribe(new Action1<Observable<Integer>>() {
+                        .compose(bindToLifecycle()).subscribe(new Action1<Observable<Integer>>() {
                             @Override
                             public void call(Observable<Integer> i) {
                                 log(i.getClass().getName());
-                                i.subscribe(new Action1<Integer>() {
+                                i.compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                                     @Override
                                     public void call(Integer j) {
                                         log("window:" + j);
@@ -37,11 +37,11 @@ public class WindowActivity extends BaseActivity {
         mRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                windowTimeObserver().subscribe(new Action1<Observable<Long>>() {
+                windowTimeObserver().compose(bindToLifecycle()).subscribe(new Action1<Observable<Long>>() {
                     @Override
                     public void call(Observable<Long> i) {
                         log(System.currentTimeMillis() / 1000);
-                        i.subscribe(new Action1<Long>() {
+                        i.compose(bindToLifecycle()).subscribe(new Action1<Long>() {
                             @Override
                             public void call(Long j) {
                                 log("windowTime:" + j);

@@ -14,7 +14,7 @@ public class OnErrorActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("onErrorReturn");
         mLButton.setOnClickListener(e -> {
-            onErrorReturnObserver().subscribe(new Subscriber<String>() {
+            onErrorReturnObserver().compose(bindToLifecycle()).subscribe(new Subscriber<String>() {
                 @Override
                 public void onCompleted() {
                     log("onErrorReturn-onCompleted");
@@ -33,7 +33,7 @@ public class OnErrorActivity extends BaseActivity {
         });
         mRButton.setText("onErrorResume");
         mRButton.setOnClickListener(e -> {
-            onErrorResumeNextObserver().subscribe(new Subscriber<String>() {
+            onErrorResumeNextObserver().compose(bindToLifecycle()).subscribe(new Subscriber<String>() {
                 @Override
                 public void onCompleted() {
                     log("onErrorResume-onCompleted");

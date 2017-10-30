@@ -28,10 +28,10 @@ public class PublishAndConnectActivity extends BaseActivity {
             @Override
             public void call(Object o) {
                 log("action1:" + o);
-                if ((long) o == 3) obs.subscribe(action2);
+                if ((long) o == 3) obs.compose(bindToLifecycle()).subscribe(action2);
             }
         };
-        obs.subscribe(action1);
+        obs.compose(bindToLifecycle()).subscribe(action1);
 
         mLButton.setText("start");
         mLButton.setOnClickListener(e -> {

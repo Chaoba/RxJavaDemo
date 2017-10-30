@@ -14,7 +14,7 @@ public class ConcatAndCountActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("concat");
         mLButton.setOnClickListener(e -> {
-            concatObserver().subscribe(new Action1<Integer>() {
+            concatObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                 @Override
                 public void call(Integer i) {
                     log("concat:" + i);
@@ -23,7 +23,7 @@ public class ConcatAndCountActivity extends BaseActivity {
         });
         mRButton.setText("count");
         mRButton.setOnClickListener(e -> {
-            countObserver().subscribe(new Action1<Integer>() {
+            countObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                 @Override
                 public void call(Integer i) {
                     log("count:" + i);

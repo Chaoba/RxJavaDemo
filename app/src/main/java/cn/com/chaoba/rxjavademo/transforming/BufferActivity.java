@@ -20,7 +20,7 @@ public class BufferActivity extends BaseActivity {
         mLButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bufferObserver().subscribe(new Action1<List<Integer>>() {
+                bufferObserver().compose(bindToLifecycle()).subscribe(new Action1<List<Integer>>() {
                     @Override
                     public void call(List<Integer> integers) {
                         log("buffer:" + integers);
@@ -32,7 +32,7 @@ public class BufferActivity extends BaseActivity {
         mRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bufferTimeObserver().subscribe(new Action1<List<Long>>() {
+                bufferTimeObserver().compose(bindToLifecycle()).subscribe(new Action1<List<Long>>() {
                     @Override
                     public void call(List<Long> longs) {
                         log("bufferTime:" + longs);

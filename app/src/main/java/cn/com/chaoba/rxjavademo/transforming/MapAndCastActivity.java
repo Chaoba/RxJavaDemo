@@ -17,7 +17,7 @@ public class MapAndCastActivity extends BaseActivity {
         mLButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mapObserver().subscribe(new Action1<Integer>() {
+                mapObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer integer) {
                         log("Map:" + integer);
@@ -29,7 +29,7 @@ public class MapAndCastActivity extends BaseActivity {
         mRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                castObserver().subscribe(new Action1<Dog>() {
+                castObserver().compose(bindToLifecycle()).subscribe(new Action1<Dog>() {
                     @Override
                     public void call(Dog dog) {
                         log("Cast:" + dog.getName());

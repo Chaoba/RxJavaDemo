@@ -21,7 +21,7 @@ public class DebounceActivity extends BaseActivity {
         mLButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                throttleWithTimeoutObserver().subscribe(new Action1<Integer>() {
+                throttleWithTimeoutObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer i) {
                         log("throttleWithTimeout:" + i);
@@ -34,7 +34,7 @@ public class DebounceActivity extends BaseActivity {
         mRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                debounceObserver().subscribe(new Action1<Long>() {
+                debounceObserver().compose(bindToLifecycle()).subscribe(new Action1<Long>() {
                     @Override
                     public void call(Long i) {
                         log("debounce:" + i);

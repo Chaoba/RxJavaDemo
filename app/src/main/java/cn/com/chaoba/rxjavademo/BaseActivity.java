@@ -1,15 +1,16 @@
 package cn.com.chaoba.rxjavademo;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.trello.rxlifecycle.components.RxActivity;
+
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends RxActivity {
 
     protected Button mLButton, mRButton;
     protected TextView mResultView;
@@ -27,7 +28,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void log(Object s) {
         Log.i(TAG, String.valueOf(s));
-        Observable.just(s).observeOn(AndroidSchedulers.mainThread()).subscribe(i -> {
+        Observable.just(s).observeOn(AndroidSchedulers.mainThread()).compose(bindToLifecycle()).subscribe(i -> {
             mResultView.setText(mResultView.getText() + "\n" + i);
         });
 

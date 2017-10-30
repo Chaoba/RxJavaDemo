@@ -14,7 +14,7 @@ public class MaterializeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("materialize");
         mLButton.setOnClickListener(e -> {
-            materializeObserver().subscribe(new Action1<Notification<Integer>>() {
+            materializeObserver().compose(bindToLifecycle()).subscribe(new Action1<Notification<Integer>>() {
                 @Override
                 public void call(Notification<Integer> i) {
                     log("materialize:" + i.getValue() + " type" + i.getKind());
@@ -23,7 +23,7 @@ public class MaterializeActivity extends BaseActivity {
         });
         mRButton.setText("deMeterialize");
         mRButton.setOnClickListener(e -> {
-            deMaterializeObserver().subscribe(new Action1<Integer>() {
+            deMaterializeObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                 @Override
                 public void call(Integer i) {
                     log("deMeterialize:" + i);

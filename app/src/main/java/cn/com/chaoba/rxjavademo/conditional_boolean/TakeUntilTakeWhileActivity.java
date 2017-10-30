@@ -16,7 +16,7 @@ public class TakeUntilTakeWhileActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("takeUntil");
         mLButton.setOnClickListener(e -> {
-            takeUntilObserver().subscribe(new Action1<Long>() {
+            takeUntilObserver().compose(bindToLifecycle()).subscribe(new Action1<Long>() {
                 @Override
                 public void call(Long i) {
                     log("takeUntil:" + i);
@@ -25,7 +25,7 @@ public class TakeUntilTakeWhileActivity extends BaseActivity {
         });
         mRButton.setText("takeWhile");
         mRButton.setOnClickListener(e -> {
-            takeWhileObserver().subscribe(new Action1<Long>() {
+            takeWhileObserver().compose(bindToLifecycle()).subscribe(new Action1<Long>() {
                 @Override
                 public void call(Long i) {
                     log("takeWhile:" + i);

@@ -18,7 +18,7 @@ public class SampleActivity extends BaseActivity {
         mLButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sampleObserver().subscribe(new Action1<Long>() {
+                sampleObserver().compose(bindToLifecycle()).subscribe(new Action1<Long>() {
                     @Override
                     public void call(Long i) {
                         log("sample:" + i);
@@ -30,7 +30,7 @@ public class SampleActivity extends BaseActivity {
         mRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                throttleFirstObserver().subscribe(new Action1<Long>() {
+                throttleFirstObserver().compose(bindToLifecycle()).subscribe(new Action1<Long>() {
                     @Override
                     public void call(Long i) {
                         log("throttleFirst:" + i);

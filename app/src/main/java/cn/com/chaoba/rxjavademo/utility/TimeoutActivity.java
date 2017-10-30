@@ -16,7 +16,7 @@ public class TimeoutActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("timeout");
         mLButton.setOnClickListener(e -> {
-            timeoutObserver().subscribe(new Subscriber<Integer>() {
+            timeoutObserver().compose(bindToLifecycle()).subscribe(new Subscriber<Integer>() {
                 @Override
                 public void onCompleted() {
 
@@ -35,7 +35,7 @@ public class TimeoutActivity extends BaseActivity {
         });
         mRButton.setText("timeoutobserver");
         mRButton.setOnClickListener(e -> {
-            timeoutobserverObserver().subscribe(new Action1<Integer>() {
+            timeoutobserverObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                 @Override
                 public void call(Integer integer) {
                     log(integer);

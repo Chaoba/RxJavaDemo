@@ -17,13 +17,13 @@ public class AllAndAmbActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("all");
         mLButton.setOnClickListener(e -> {
-            allObserver().subscribe(new Action1<Boolean>() {
+            allObserver().compose(bindToLifecycle()).subscribe(new Action1<Boolean>() {
                 @Override
                 public void call(Boolean aBoolean) {
                     log("all:" + aBoolean);
                 }
             });
-            notAllObserver().subscribe(new Action1<Boolean>() {
+            notAllObserver().compose(bindToLifecycle()).subscribe(new Action1<Boolean>() {
                 @Override
                 public void call(Boolean aBoolean) {
                     log("not all:" + aBoolean);
@@ -32,7 +32,7 @@ public class AllAndAmbActivity extends BaseActivity {
         });
         mRButton.setText("amb");
         mRButton.setOnClickListener(e -> {
-            ambObserver().subscribe(new Action1<Integer>() {
+            ambObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                 @Override
                 public void call(Integer i) {
                     log("amb:" + i);

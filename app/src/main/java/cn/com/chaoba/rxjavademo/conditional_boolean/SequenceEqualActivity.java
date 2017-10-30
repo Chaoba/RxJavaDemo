@@ -13,7 +13,7 @@ public class SequenceEqualActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("equal");
         mLButton.setOnClickListener(e -> {
-            equalObserver().subscribe(new Action1<Boolean>() {
+            equalObserver().compose(bindToLifecycle()).subscribe(new Action1<Boolean>() {
                 @Override
                 public void call(Boolean i) {
                     log("equal:" + i);
@@ -22,7 +22,7 @@ public class SequenceEqualActivity extends BaseActivity {
         });
         mRButton.setText("notEqual");
         mRButton.setOnClickListener(e -> {
-            notEqualObserver().subscribe(new Action1<Boolean>() {
+            notEqualObserver().compose(bindToLifecycle()).subscribe(new Action1<Boolean>() {
                 @Override
                 public void call(Boolean i) {
                     log("notEqual:" + i);

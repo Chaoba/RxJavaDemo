@@ -18,7 +18,7 @@ public class ZipActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("zipWith");
         mLButton.setOnClickListener(e -> {
-            zipWithObserver().subscribe(new Action1<String>() {
+            zipWithObserver().compose(bindToLifecycle()).subscribe(new Action1<String>() {
                 @Override
                 public void call(String s) {
                     log("zipWith:" + s);
@@ -27,7 +27,7 @@ public class ZipActivity extends BaseActivity {
         });
         mRButton.setText("zip");
         mRButton.setOnClickListener(e -> {
-            zipWithIterableObserver().subscribe(new Action1<String>() {
+            zipWithIterableObserver().compose(bindToLifecycle()).subscribe(new Action1<String>() {
                 @Override
                 public void call(String s) {
                     log("zip:" + s);

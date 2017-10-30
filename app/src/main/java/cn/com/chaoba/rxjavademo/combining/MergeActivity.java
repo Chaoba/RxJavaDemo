@@ -14,7 +14,7 @@ public class MergeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("Merge");
         mLButton.setOnClickListener(e -> {
-            mergeObserver().subscribe(new Action1<Integer>() {
+            mergeObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                 @Override
                 public void call(Integer i) {
                     log("Merge:" + i);
@@ -23,7 +23,7 @@ public class MergeActivity extends BaseActivity {
         });
         mRButton.setText("mergeDelayError");
         mRButton.setOnClickListener(e -> {
-            mergeDelayErrorObserver().subscribe(new Subscriber<Integer>() {
+            mergeDelayErrorObserver().compose(bindToLifecycle()).subscribe(new Subscriber<Integer>() {
                 @Override
                 public void onCompleted() {
                     log("onCompleted");

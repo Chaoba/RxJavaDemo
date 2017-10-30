@@ -21,7 +21,7 @@ public class CombineLatestActivity extends BaseActivity {
         mLButton.setText("combineList");
         mLButton.setOnClickListener(e -> {
             list.clear();
-            combineListObserver().subscribe(new Action1<String>() {
+            combineListObserver().compose(bindToLifecycle()).subscribe(new Action1<String>() {
                 @Override
                 public void call(String i) {
                     log("combineList:" + i);
@@ -30,7 +30,7 @@ public class CombineLatestActivity extends BaseActivity {
         });
         mRButton.setText("CombineLatest");
         mRButton.setOnClickListener(e -> {
-            combineLatestObserver().subscribe(new Action1<String>() {
+            combineLatestObserver().compose(bindToLifecycle()).subscribe(new Action1<String>() {
                 @Override
                 public void call(String i) {
                     log("CombineLatest" + i);

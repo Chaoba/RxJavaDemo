@@ -20,7 +20,7 @@ public class RepeatAndTimerActivity extends BaseActivity {
         mLButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                repeatObserver().subscribe(new Action1<Integer>() {
+                repeatObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer i) {
                         log("repeat:" + i);
@@ -32,7 +32,7 @@ public class RepeatAndTimerActivity extends BaseActivity {
         mRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                timerObserver().subscribe(new Action1<Long>() {
+                timerObserver().compose(bindToLifecycle()).subscribe(new Action1<Long>() {
                     @Override
                     public void call(Long aLong) {
                         log("timer:" + aLong);

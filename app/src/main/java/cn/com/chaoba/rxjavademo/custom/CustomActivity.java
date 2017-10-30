@@ -17,7 +17,7 @@ public class CustomActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("lift");
         mLButton.setOnClickListener(e -> {
-            liftObserver().subscribe(new Action1<String>() {
+            liftObserver().compose(bindToLifecycle()).subscribe(new Action1<String>() {
                 @Override
                 public void call(String s) {
                     log("lift:" + s);
@@ -26,7 +26,7 @@ public class CustomActivity extends BaseActivity {
         });
         mRButton.setText("compose");
         mRButton.setOnClickListener(e -> {
-            composeObserver().subscribe(new Action1<String>() {
+            composeObserver().compose(bindToLifecycle()).subscribe(new Action1<String>() {
                 @Override
                 public void call(String s) {
                     log("compose:" + s);

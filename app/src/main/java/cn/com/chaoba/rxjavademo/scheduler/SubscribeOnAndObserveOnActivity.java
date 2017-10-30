@@ -44,7 +44,7 @@ public class SubscribeOnAndObserveOnActivity extends BaseActivity {
                     }
                 })
                 .subscribeOn(Schedulers.computation())
-                .subscribe(new Action1<Integer>() {
+                .compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer integer) {
                         log("action:" + Thread.currentThread()
@@ -84,7 +84,7 @@ public class SubscribeOnAndObserveOnActivity extends BaseActivity {
                             }
                         })
                         .observeOn(Schedulers.computation())
-                        .subscribe(new Action1<Integer>() {
+                        .compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                             @Override
                             public void call(Integer integer) {
                                 log("action:" + Thread.currentThread()
@@ -126,7 +126,7 @@ public class SubscribeOnAndObserveOnActivity extends BaseActivity {
                             }
                         })
                         .subscribeOn(Schedulers.computation())
-                        .subscribe(new Action1<Integer>() {
+                        .compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                             @Override
                             public void call(Integer integer) {
                                 log("action:" + Thread.currentThread()

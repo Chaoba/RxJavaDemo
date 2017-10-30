@@ -25,7 +25,7 @@ public class FromActivity extends BaseActivity {
         mLButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FromArray().subscribe(new Action1<Integer>() {
+                FromArray().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer i) {
                         log("FromArray:" + i);
@@ -36,7 +36,7 @@ public class FromActivity extends BaseActivity {
         mRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FromIterable().subscribe(new Action1<Integer>() {
+                FromIterable().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer i) {
                         log("FromIterable:" + i);

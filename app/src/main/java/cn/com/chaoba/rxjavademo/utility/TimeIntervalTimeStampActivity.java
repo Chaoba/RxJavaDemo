@@ -17,7 +17,7 @@ public class TimeIntervalTimeStampActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("timeInterval");
         mLButton.setOnClickListener(e -> {
-            timeIntervalObserver().subscribe(new Action1<TimeInterval<Long>>() {
+            timeIntervalObserver().compose(bindToLifecycle()).subscribe(new Action1<TimeInterval<Long>>() {
                 @Override
                 public void call(TimeInterval<Long> i) {
                     log("timeInterval:" + i.getValue() + "-"
@@ -27,7 +27,7 @@ public class TimeIntervalTimeStampActivity extends BaseActivity {
         });
         mRButton.setText("timeStamp");
         mRButton.setOnClickListener(e -> {
-            timeStampObserver().subscribe(new Action1<Timestamped<Long>>() {
+            timeStampObserver().compose(bindToLifecycle()).subscribe(new Action1<Timestamped<Long>>() {
                 @Override
                 public void call(Timestamped<Long> i) {
                     log("timeStamp:" + i.getValue() + "-"

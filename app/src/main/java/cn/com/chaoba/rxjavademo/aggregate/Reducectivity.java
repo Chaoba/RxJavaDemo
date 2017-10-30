@@ -22,7 +22,7 @@ public class Reducectivity extends BaseActivity {
         }
         mLButton.setText("reduce");
         mLButton.setOnClickListener(e -> {
-            reduceObserver().subscribe(new Action1<Integer>() {
+            reduceObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                 @Override
                 public void call(Integer i) {
                     log("reduce:" + i);
@@ -31,7 +31,7 @@ public class Reducectivity extends BaseActivity {
         });
         mRButton.setText("collect");
         mRButton.setOnClickListener(e -> {
-            collectObserver().subscribe(new Action1<ArrayList<Integer>>() {
+            collectObserver().compose(bindToLifecycle()).subscribe(new Action1<ArrayList<Integer>>() {
                 @Override
                 public void call(ArrayList<Integer> integers) {
                     log("collect:" + integers);

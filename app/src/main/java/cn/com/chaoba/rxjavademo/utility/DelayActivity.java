@@ -18,7 +18,7 @@ public class DelayActivity extends BaseActivity {
         mLButton.setText("delay");
         mLButton.setOnClickListener(e -> {
             log("start subscribe:" + getCurrentTime());
-            delayObserver().subscribe(new Action1<Long>() {
+            delayObserver().compose(bindToLifecycle()).subscribe(new Action1<Long>() {
                 @Override
                 public void call(Long i) {
                     log("delay:" + (getCurrentTime() - i));
@@ -28,7 +28,7 @@ public class DelayActivity extends BaseActivity {
         mRButton.setText("delaySubscription");
         mRButton.setOnClickListener(e -> {
             log("start subscribe:" + getCurrentTime());
-            delaySubscriptionObserver().subscribe(new Action1<Long>() {
+            delaySubscriptionObserver().compose(bindToLifecycle()).subscribe(new Action1<Long>() {
                 @Override
                 public void call(Long i) {
                     log("delaySubscription:" + getCurrentTime());

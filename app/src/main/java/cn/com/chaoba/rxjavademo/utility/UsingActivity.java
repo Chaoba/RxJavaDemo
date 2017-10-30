@@ -35,7 +35,7 @@ public class UsingActivity extends BaseActivity {
         };
         mLButton.setText("using");
         mLButton.setOnClickListener(e -> {
-            observable.subscribe(subscriber);
+            observable.compose(bindToLifecycle()).subscribe(subscriber);
         });
         mRButton.setText("unSubscrib");
         mRButton.setOnClickListener(e -> {
@@ -83,7 +83,7 @@ public class UsingActivity extends BaseActivity {
         public Animal() {
             log("create animal");
             Observable.interval(1000, TimeUnit.MILLISECONDS)
-                    .subscribe(subscriber);
+                    .compose(bindToLifecycle()).subscribe(subscriber);
         }
 
         public void release() {

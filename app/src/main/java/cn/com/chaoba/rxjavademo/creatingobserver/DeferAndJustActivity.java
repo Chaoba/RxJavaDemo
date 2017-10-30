@@ -21,7 +21,7 @@ public class DeferAndJustActivity extends BaseActivity {
         mLButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deferObservable.subscribe(new Action1<Long>() {
+                deferObservable.compose(bindToLifecycle()).subscribe(new Action1<Long>() {
                     @Override
                     public void call(Long time) {
                         log("defer:" + time);
@@ -33,7 +33,7 @@ public class DeferAndJustActivity extends BaseActivity {
         mRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                justObservable.subscribe(new Action1<Long>() {
+                justObservable.compose(bindToLifecycle()).subscribe(new Action1<Long>() {
                     @Override
                     public void call(Long time) {
                         log("just:" + time);

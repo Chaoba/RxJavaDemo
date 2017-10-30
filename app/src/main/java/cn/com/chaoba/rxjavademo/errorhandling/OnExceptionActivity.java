@@ -13,7 +13,7 @@ public class OnExceptionActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mLButton.setText("onException-true");
         mLButton.setOnClickListener(e -> {
-            onExceptionResumeObserver(true).subscribe(new Subscriber<String>() {
+            onExceptionResumeObserver(true).compose(bindToLifecycle()).subscribe(new Subscriber<String>() {
                 @Override
                 public void onCompleted() {
                     log("onException-true-onCompleted\n");
@@ -32,7 +32,7 @@ public class OnExceptionActivity extends BaseActivity {
         });
         mRButton.setText("onException-false");
         mRButton.setOnClickListener(e -> {
-            onExceptionResumeObserver(false).subscribe(new Subscriber<String>() {
+            onExceptionResumeObserver(false).compose(bindToLifecycle()).subscribe(new Subscriber<String>() {
                 @Override
                 public void onCompleted() {
                     log("onException-false-onCompleted\n");

@@ -19,7 +19,7 @@ public class CreateAndRangeActivity extends BaseActivity {
         mLButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createObserver().subscribe(new Subscriber<Integer>() {
+                createObserver().compose(bindToLifecycle()).subscribe(new Subscriber<Integer>() {
                     @Override
                     public void onCompleted() {
                         log("onComplete!");
@@ -41,7 +41,7 @@ public class CreateAndRangeActivity extends BaseActivity {
         mRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Observable.range(10, 5).subscribe(new Action1<Integer>() {
+                Observable.range(10, 5).compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer integer) {
                         log(integer);

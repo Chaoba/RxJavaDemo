@@ -23,7 +23,7 @@ public class ScanActivity extends BaseActivity {
         mLButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                scanObserver().subscribe(new Action1<Integer>() {
+                scanObserver().compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer i) {
                         log("scan:" + i);

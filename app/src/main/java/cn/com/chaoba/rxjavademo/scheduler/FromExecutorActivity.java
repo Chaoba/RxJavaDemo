@@ -35,7 +35,7 @@ public class FromExecutorActivity extends BaseActivity {
         Scheduler scheduler = Schedulers.from(executor);
         Observable.interval(1, TimeUnit.SECONDS).take(5)
                 .observeOn(scheduler)
-                .subscribe(new Action1<Long>() {
+                .compose(bindToLifecycle()).subscribe(new Action1<Long>() {
                     @Override
                     public void call(Long l) {
                         log(l + "-" + Thread.currentThread().getName());

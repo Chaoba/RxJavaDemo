@@ -23,7 +23,7 @@ public class FirstActivity extends BaseActivity {
                             public Boolean call(Integer integer) {
                                 return integer > 3;
                             }
-                        }).subscribe(new Action1<Integer>() {
+                        }).compose(bindToLifecycle()).subscribe(new Action1<Integer>() {
                             @Override
                             public void call(Integer i) {
                                 log("First:" + i);
