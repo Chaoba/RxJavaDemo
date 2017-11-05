@@ -467,6 +467,16 @@
                 <category android:name="cn.com.chaoba.rxjavademo.category" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".rxlifecycle.RxLifecycleEventsActivity"
+            android:label="@string/rx_lifecycle_events"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="cn.com.chaoba.rxjavademo.category" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

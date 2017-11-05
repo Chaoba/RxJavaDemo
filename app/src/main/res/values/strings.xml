@@ -46,5 +46,6 @@
     <string name="title_activity_replay">ReplayActivity</string>
     <string name="title_activity_custom">CustomActivity</string>
     <string name="from_executor">FromExecutorActivity</string>
+    <string name="rx_lifecycle_events">RxLifecycleEventsActivity</string>
 
 </resources>
