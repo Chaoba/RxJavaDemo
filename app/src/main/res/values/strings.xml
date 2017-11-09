@@ -47,5 +47,6 @@
     <string name="title_activity_custom">CustomActivity</string>
     <string name="from_executor">FromExecutorActivity</string>
     <string name="rx_lifecycle_events">RxLifecycleEventsActivity</string>
+    <string name="rx_bind_button_textview">RxBindButtonTextViewActivity</string>
 
 </resources>

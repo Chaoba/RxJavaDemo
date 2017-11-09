@@ -51,7 +51,8 @@ public class DebounceActivity extends BaseActivity {
                 .debounce(new Func1<Long, Observable<Long>>() {
                     @Override
                     public Observable<Long> call(Long aLong) {
-                        return Observable.timer(aLong % 2 * 1500, TimeUnit.MILLISECONDS);
+                        return Observable.timer(aLong % 2 * 1500,
+                                TimeUnit.MILLISECONDS);
                     }
                 });
     }
