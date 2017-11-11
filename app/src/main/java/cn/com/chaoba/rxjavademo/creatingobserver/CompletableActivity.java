@@ -5,6 +5,7 @@ import android.view.View;
 
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.Completable;
+import rx.CompletableSubscriber;
 import rx.Subscription;
 
 public class CompletableActivity extends BaseActivity {
@@ -17,7 +18,7 @@ public class CompletableActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Completable.error(new Throwable("Completable error"))
-                        .subscribe(new Completable.CompletableSubscriber() {
+                        .subscribe(new CompletableSubscriber() {
                             @Override
                             public void onCompleted() {
                                 log("onCompleted");
@@ -39,7 +40,7 @@ public class CompletableActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Completable.complete()
-                        .subscribe(new Completable.CompletableSubscriber() {
+                        .subscribe(new CompletableSubscriber() {
                             @Override
                             public void onCompleted() {
                                 log("onCompleted");
