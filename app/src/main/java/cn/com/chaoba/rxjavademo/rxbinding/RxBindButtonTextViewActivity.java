@@ -64,15 +64,4 @@ public class RxBindButtonTextViewActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        log("onPause");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        log("onDestroy");
-    }
 }

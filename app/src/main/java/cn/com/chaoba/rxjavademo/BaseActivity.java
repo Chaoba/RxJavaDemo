@@ -2,7 +2,6 @@ package cn.com.chaoba.rxjavademo;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -17,7 +16,6 @@ public class BaseActivity extends RxActivity {
     protected Button mLButton, mRButton;
     protected TextView mResultView;
     protected ScrollView mScrollView;
-    protected ViewGroup mBodyView;
     protected String TAG;
 
     @Override
@@ -27,7 +25,6 @@ public class BaseActivity extends RxActivity {
         mLButton = (Button) findViewById(R.id.left);
         mRButton = (Button) findViewById(R.id.right);
         mResultView = (TextView) findViewById(R.id.result);
-        mBodyView = (ViewGroup) findViewById(R.id.body);
         mScrollView = (ScrollView) findViewById(R.id.scroll_view);
         TAG = getLocalClassName();
     }

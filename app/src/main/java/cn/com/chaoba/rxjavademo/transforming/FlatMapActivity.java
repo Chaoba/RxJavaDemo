@@ -6,7 +6,6 @@ import android.view.View;
 import java.util.ArrayList;
 
 import cn.com.chaoba.rxjavademo.BaseActivity;
-import cn.com.chaoba.rxjavademo.R;
 import rx.Observable;
 import rx.functions.Action1;
 import rx.functions.Func1;

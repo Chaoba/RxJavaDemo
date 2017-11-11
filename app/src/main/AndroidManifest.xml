@@ -476,9 +476,20 @@
 
                 <category android:name="cn.com.chaoba.rxjavademo.category" />
             </intent-filter>
-        </activity> <activity
+        </activity>
+        <activity
             android:name=".rxbinding.RxBindButtonTextViewActivity"
             android:label="@string/rx_bind_button_textview"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="cn.com.chaoba.rxjavademo.category" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".rxbinding.RxBindViewPagerActivity"
+            android:label="@string/rx_bind_viewpager_textview"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

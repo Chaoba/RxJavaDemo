@@ -48,5 +48,6 @@
     <string name="from_executor">FromExecutorActivity</string>
     <string name="rx_lifecycle_events">RxLifecycleEventsActivity</string>
     <string name="rx_bind_button_textview">RxBindButtonTextViewActivity</string>
+    <string name="rx_bind_viewpager_textview">RxBindViewPagerActivity</string>
 
 </resources>
