@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import cn.com.chaoba.rxjavademo.BaseActivity;
 import rx.functions.Action1;
+import rx.functions.Func1;
 
 public class RxBindButtonTextViewActivity extends BaseActivity {
     long lastTime;
@@ -28,12 +29,25 @@ public class RxBindButtonTextViewActivity extends BaseActivity {
                 });
 
         RxTextView.textChanges(mResultView)
-                .subscribe(new Action1<CharSequence>() {
+                .map(new Func1<CharSequence, Integer>() {
                     @Override
-                    public void call(CharSequence charSequence) {
-                        Log.i(TAG, "textChanges:" + charSequence);
+                    public Integer call(CharSequence charSequence) {
+                        return charSequence.length();
+                    }
+                })
+                .filter(new Func1<Integer, Boolean>() {
+                    @Override
+                    public Boolean call(Integer integer) {
+                        return integer > 10;
+                    }
+                })
+                .subscribe(new Action1<Integer>() {
+                    @Override
+                    public void call(Integer integer) {
+                        Log.e(TAG, "Text changed to much times: " + integer);
                     }
                 });
+
 
         mRButton.setOnClickListener(new View.OnClickListener() {
             @Override
