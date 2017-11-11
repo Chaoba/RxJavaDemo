@@ -35,22 +35,23 @@
 
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/body"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/body"
         android:layout_above="@id/button_bar">
 
-        <TextView
-            android:id="@+id/result"
+        <FrameLayout
+            android:id="@+id/body"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/result"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </FrameLayout>
     </ScrollView>
 
 
